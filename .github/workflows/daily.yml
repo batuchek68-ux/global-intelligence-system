@@ -1,33 +1,45 @@
-import json
-import os
-from collections import Counter
+name: Daily Intelligence Update
 
-STOPWORDS = {
-    "the","is","of","and","to","in","for","on","a",
-    "with","at","from","by","an","be","that","this"
-}
+on:
+  schedule:
+    - cron: '0 */6 * * *'
 
-with open("data/raw_news.json","r",encoding="utf-8") as f:
-    news = json.load(f)
+  workflow_dispatch:
 
-words = []
+jobs:
+  run:
+    runs-on: ubuntu-latest
 
-for item in news:
-    for w in item.get("title","").lower().split():
-        w = "".join(c for c in w if c.isalnum())
-        if len(w) > 2 and w not in STOPWORDS:
-            words.append(w)
+    permissions:
+      contents: write
 
-counter = Counter(words)
+    steps:
 
-top = [w for w,_ in counter.most_common(20)]
+      - name: Checkout
+        uses: actions/checkout@v4
 
-os.makedirs("output", exist_ok=True)
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-with open("output/trend.json","w") as f:
-    json.dump({"keywords": top}, f, indent=2)
+      - name: Install packages
+        run: |
+          pip install feedparser
 
-with open("output/dashboard.json","w") as f:
-    json.dump({"keywords": top, "topics": top[:10]}, f, indent=2)
+      - name: Fetch news
+        run: python src/fetch_news.py
 
-print("OK")
+      - name: Analyze trends
+        run: python src/analyze.py
+
+      - name: Commit results
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+
+          git add data/*.json output/*.json
+
+          git commit -m "auto daily report" || echo "no changes"
+
+          git push
