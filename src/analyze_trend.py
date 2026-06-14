@@ -1,30 +1,33 @@
 import json
+import os
 from collections import Counter
 
-with open("data/raw_news.json", "r", encoding="utf-8") as f:
+STOPWORDS = {
+    "the","is","of","and","to","in","for","on","a",
+    "with","at","from","by","an","be","that","this"
+}
+
+with open("data/raw_news.json","r",encoding="utf-8") as f:
     news = json.load(f)
 
 words = []
 
 for item in news:
-    title = item.get("title", "")
-    words.extend(title.lower().split())
+    for w in item.get("title","").lower().split():
+        w = "".join(c for c in w if c.isalnum())
+        if len(w) > 2 and w not in STOPWORDS:
+            words.append(w)
 
-# 👇 在这里加 stopwords 过滤
-stopwords = {"the", "is", "of", "and", "to", "in", "for", "on", "a"}
+counter = Counter(words)
 
-words = [
-    w for w in words
-    if w not in stopwords and len(w) > 2
-]
+top = [w for w,_ in counter.most_common(20)]
 
-keywords = Counter(words).most_common(20)
+os.makedirs("output", exist_ok=True)
 
-result = {
-    "keywords": keywords
-}
+with open("output/trend.json","w") as f:
+    json.dump({"keywords": top}, f, indent=2)
 
-with open("output/trend.json", "w", encoding="utf-8") as f:
-    json.dump(result, f, indent=2)
+with open("output/dashboard.json","w") as f:
+    json.dump({"keywords": top, "topics": top[:10]}, f, indent=2)
 
-print("Trend analysis complete")
+print("OK")
