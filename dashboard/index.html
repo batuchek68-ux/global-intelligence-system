@@ -1,31 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Global Intelligence Dashboard</title>
-</head>
-<body>
-  <h1>🧠 Global Intelligence Dashboard</h1>
+import json
+from datetime import datetime
 
-  <div id="content"></div>
+with open("output/trend.json") as f:
+    trend=json.load(f)
 
-  <script>
-    fetch("../output/dashboard.json")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("content").innerHTML = `
-          <h2>Top Keywords</h2>
-          <ul>
-            ${data.keywords.map(k => `<li>${k[0]}: ${k[1]}</li>`).join("")}
-          </ul>
+with open("output/summary.json") as f:
+    summary=json.load(f)
 
-          <h2>Topics</h2>
-          <ul>
-            ${data.topics.map(t => `<li>${t.name}: ${t.count}</li>`).join("")}
-          </ul>
+dashboard={
 
-          <p>Last updated: ${data.updated_at}</p>
-        `;
-      });
-  </script>
-</body>
-</html>
+    "updated_at":datetime.utcnow().isoformat(),
+
+    "top_keywords":trend["top_keywords"],
+
+    "top_news":summary[:20]
+
+}
+
+with open("output/dashboard.json","w") as f:
+    json.dump(dashboard,f,indent=2)
+
+print("dashboard ready")
