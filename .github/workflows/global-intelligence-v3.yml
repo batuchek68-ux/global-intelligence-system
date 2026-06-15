@@ -1,1 +1,54 @@
+name: Global Intelligence v3
 
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+
+  workflow_dispatch:
+
+jobs:
+
+  run:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: |
+          pip install -r requirements.txt
+
+      - name: Fetch
+        run: python src/fetch_news.py
+
+      - name: Preprocess
+        run: python src/preprocess.py
+
+      - name: AI Summary
+        run: python src/ai_summary.py
+
+      - name: Analyze Trend
+        run: python src/analyze_trend.py
+
+      - name: Dashboard
+        run: python src/generate_dashboard.py
+
+      - name: Commit
+        run: |
+          git config user.name bot
+          git config user.email bot@users.noreply.github.com
+
+          git add .
+
+          git commit -m "auto intelligence update" || echo "no changes"
+
+          git push
