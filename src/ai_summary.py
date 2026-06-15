@@ -14,10 +14,15 @@ with open(INPUT, "r", encoding="utf-8") as f:
 summary = []
 
 for item in data:
-
     title = item.get("title") or item.get("original") or ""
 
+    if not title:
+        continue
+
     summary.append({
+        "title": title,
+        "summary": title[:120]
+    })
         "title": title,
         "summary": title[:120]
     })
