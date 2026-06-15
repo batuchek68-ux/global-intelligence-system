@@ -2,34 +2,37 @@ import json
 import os
 
 INPUT = "data/clean_news.json"
-OUTPUT = "output/summary.json"
+OUTPUT = "data/summary.json"
 
-if not os.path.exists(INPUT):
-    print("clean_news.json not found")
-    exit()
+def safe_get(item):
+    return item.get("title") or item.get("original") or "unknown"
 
-with open(INPUT, "r", encoding="utf-8") as f:
-    data = json.load(f)
+def main():
+    if not os.path.exists(INPUT):
+        print("missing input")
+        return
 
-summary = []
+    with open(INPUT, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-for item in data:
-    title = item.get("title") or item.get("original") or ""
+    summary = []
 
-    if not title:
-        continue
+    for item in data:
+        title = safe_get(item)
 
-    summary.append({
-        "title": title,
-        "summary": title[:120]
-    })
-        "title": title,
-        "summary": title[:120]
-    })
+        summary.append({
+            "title": title,
+            "summary": title[:120],
+            "source": item.get("source", "unknown"),
+            "time": item.get("time", "")
+        })
 
-os.makedirs("output", exist_ok=True)
+    os.makedirs("data", exist_ok=True)
 
-with open(OUTPUT, "w", encoding="utf-8") as f:
-    json.dump(summary, f, ensure_ascii=False, indent=2)
+    with open(OUTPUT, "w", encoding="utf-8") as f:
+        json.dump(summary, f, ensure_ascii=False, indent=2)
 
-print(f"saved {len(summary)} summaries")
+    print(f"[OK] saved {len(summary)} items")
+
+if __name__ == "__main__":
+    main()
