@@ -33,6 +33,28 @@ def load_json(relative: str) -> dict:
         return {"exists": True, "path": relative, "error": str(exc)}
 
 
+def nested_get(data: dict, *keys: str) -> object | None:
+    current: object = data
+    for key in keys:
+        if not isinstance(current, dict):
+            return None
+        current = current.get(key)
+    return current
+
+
+def acceptance_from_cloud_run(cloud_run_data: dict) -> dict:
+    direct = cloud_run_data.get("acceptance")
+    if isinstance(direct, dict):
+        return direct
+    upload_acceptance = nested_get(cloud_run_data, "upload_and_acceptance", "acceptance")
+    if isinstance(upload_acceptance, dict):
+        return upload_acceptance
+    create_acceptance = nested_get(cloud_run_data, "create_upload_and_acceptance", "upload_and_acceptance", "acceptance")
+    if isinstance(create_acceptance, dict):
+        return create_acceptance
+    return {}
+
+
 def env_status() -> dict:
     env_token = os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN")
     token, source = configured_token_info(env_token)
@@ -64,6 +86,8 @@ def build_status() -> dict:
     remote_data = remote_acceptance.get("data", {}) if remote_acceptance.get("exists") else {}
     remote_ok = bool(remote_data.get("ok")) if isinstance(remote_data, dict) else False
     remote_success = remote_ok and remote_data.get("conclusion") == "success"
+    cloud_run_acceptance = acceptance_from_cloud_run(cloud_run_data) if isinstance(cloud_run_data, dict) else {}
+    cloud_run_remote_success = bool(cloud_run_acceptance.get("ok")) and cloud_run_acceptance.get("conclusion") == "success"
 
     missing = []
     if not token:
@@ -72,8 +96,9 @@ def build_status() -> dict:
         missing.append("GITHUB_REPOSITORY")
 
     local_ready = bool(preflight.get("ok"))
-    cloud_ready = local_ready and not missing
-    complete = cloud_ready and cloud_run_accepted and remote_success
+    acceptance_evidence_complete = cloud_run_accepted and (remote_success or cloud_run_remote_success)
+    cloud_ready = local_ready and (not missing or acceptance_evidence_complete)
+    complete = local_ready and acceptance_evidence_complete
 
     return {
         "ok": complete,
@@ -81,7 +106,7 @@ def build_status() -> dict:
         "stage": "completed" if complete else ("configuration" if missing else "remote_acceptance"),
         "local_ready": local_ready,
         "cloud_ready": cloud_ready,
-        "missing": missing,
+        "missing": [] if complete else missing,
         "environment": env_status(),
         "token_source": source,
         "local_config": config,
@@ -101,6 +126,7 @@ def build_status() -> dict:
         "connection_check": connection_check,
         "cloud_run": cloud_run,
         "remote_acceptance": remote_acceptance,
+        "cloud_run_acceptance": cloud_run_acceptance,
     }
 
 
