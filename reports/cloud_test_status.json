@@ -1,0 +1,171 @@
+{
+  "ok": false,
+  "created_at": "2026-06-22T06:09:39.576928+00:00",
+  "stage": "remote_acceptance",
+  "local_ready": true,
+  "cloud_ready": true,
+  "missing": [],
+  "environment": {
+    "token_configured": true,
+    "token_source": "environment",
+    "repository_configured": true,
+    "repository": "batuchek68-ux/global-intelligence-system",
+    "local_config": {
+      "exists": true,
+      "path": "cloud.local.json",
+      "repository": "batuchek68-ux/global-intelligence-system",
+      "branch": "main"
+    }
+  },
+  "token_source": "environment",
+  "local_config": {
+    "exists": true,
+    "path": "cloud.local.json",
+    "repository": "batuchek68-ux/global-intelligence-system",
+    "branch": "main"
+  },
+  "next_command": ".\\run-cloud-test.cmd -CreateRepo",
+  "interactive_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\setup-cloud-test.ps1",
+  "root_check_command": ".\\check-cloud-config-from-root.cmd",
+  "root_next_command": ".\\run-cloud-test-from-root.cmd -CreateRepo",
+  "root_interactive_command": ".\\setup-cloud-test-from-root.cmd",
+  "token_setup_doc": "docs/github-token-setup.md",
+  "completion_evidence_required": [
+    "reports/cloud_run.json has ok: true and stage: accepted",
+    "reports/cloud_acceptance_remote.json has ok: true and conclusion: success",
+    "GitHub Actions run URL is present",
+    "remote reports/cloud_acceptance.md says PASS"
+  ],
+  "preflight": {
+    "ok": true
+  },
+  "connection_check": {
+    "exists": true,
+    "path": "reports/cloud_connection_check.json",
+    "data": {
+      "ok": false,
+      "stage": "configuration",
+      "reason": "Set GITHUB_TOKEN or GH_TOKEN, and GITHUB_REPOSITORY or --repository owner/name.",
+      "missing": [
+        "GITHUB_TOKEN or GH_TOKEN"
+      ],
+      "root_commands": [
+        ".\\check-cloud-config-from-root.cmd",
+        ".\\setup-cloud-test-from-root.cmd",
+        ".\\run-cloud-test-from-root.cmd -CreateRepo"
+      ],
+      "source_commands": [
+        ".\\check-cloud-config.cmd",
+        ".\\setup-cloud-test.ps1",
+        ".\\run-cloud-test.cmd -CreateRepo"
+      ],
+      "token_storage": "Token is read from environment or prompt only; do not save it to files.",
+      "token_source": "missing",
+      "checks": []
+    }
+  },
+  "cloud_run": {
+    "exists": true,
+    "path": "reports/cloud_run.json",
+    "data": {
+      "ok": false,
+      "stage": "create_upload_or_acceptance_failed",
+      "repository": "batuchek68-ux/international-trade-ai",
+      "branch": "main",
+      "token_source": "environment",
+      "plan": {
+        "connection_check": true,
+        "create_repo": true,
+        "upload": true,
+        "trigger": true
+      },
+      "connection": {
+        "ok": false,
+        "stage": "repository",
+        "repository": "batuchek68-ux/international-trade-ai",
+        "workflow": "cloud_acceptance.yml",
+        "token_source": "environment",
+        "checks": [
+          {
+            "name": "token",
+            "ok": true,
+            "status": 200,
+            "user": {
+              "login": "batuchek68-ux",
+              "id": 293273344,
+              "type": "User"
+            },
+            "details": null,
+            "scopes": []
+          },
+          {
+            "name": "repository",
+            "ok": false,
+            "status": 404,
+            "private": null,
+            "default_branch": null,
+            "permissions": null,
+            "details": {
+              "message": "Not Found",
+              "documentation_url": "https://docs.github.com/rest/repos/repos#get-a-repository",
+              "status": "404"
+            }
+          },
+          {
+            "name": "workflow",
+            "ok": false,
+            "status": 404,
+            "workflow": "cloud_acceptance.yml",
+            "state": null,
+            "html_url": null,
+            "details": {
+              "message": "Not Found",
+              "documentation_url": "https://docs.github.com/rest/actions/workflows#get-a-workflow",
+              "status": "404"
+            }
+          },
+          {
+            "name": "actions_runs",
+            "ok": false,
+            "status": 404,
+            "latest_run": null,
+            "details": {
+              "message": "Not Found",
+              "documentation_url": "https://docs.github.com/rest/actions/workflow-runs#list-workflow-runs-for-a-repository",
+              "status": "404"
+            }
+          }
+        ]
+      },
+      "create_upload_and_acceptance": {
+        "ok": false,
+        "stage": "repository",
+        "repository": "batuchek68-ux/international-trade-ai",
+        "ensure": {
+          "ok": false,
+          "stage": "create_failed",
+          "repository": "batuchek68-ux/international-trade-ai",
+          "details": {
+            "created": false,
+            "status": 403,
+            "data": {
+              "message": "Resource not accessible by personal access token",
+              "documentation_url": "https://docs.github.com/rest/repos/repos#create-a-repository-for-the-authenticated-user",
+              "status": "403"
+            },
+            "repository": "batuchek68-ux/international-trade-ai"
+          }
+        }
+      }
+    }
+  },
+  "remote_acceptance": {
+    "exists": true,
+    "path": "reports/cloud_acceptance_remote.json",
+    "data": {
+      "ok": false,
+      "stage": "configuration",
+      "reason": "Set GITHUB_TOKEN or GH_TOKEN, and GITHUB_REPOSITORY or --repository owner/name."
+    }
+  }
+}
