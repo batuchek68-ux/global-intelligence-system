@@ -21,6 +21,12 @@ cd C:\Users\Surface\Documents\智慧情报分析平台\02_源代码\internationa
 
 The repository is already saved in `cloud.local.json` for this workspace. If no token is configured, the command asks for `GitHub token` securely and does not save it to disk.
 
+If an old token is still set in the PowerShell session, force a fresh prompt:
+
+```powershell
+.\run-cloud-test.cmd -Upload -PromptToken
+```
+
 For an interactive prompt that does not save the token to disk:
 
 ```powershell
