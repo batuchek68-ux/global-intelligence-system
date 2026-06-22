@@ -60,7 +60,7 @@ Issues: Read and write
 Metadata: Read
 ```
 
-If `run-cloud-test.cmd -CreateRepo` will create a new repository, the token must also be allowed to create repositories for the account or organization.
+If `run-cloud-test.cmd -CreateRepo` will create a new repository, the token must also be allowed to create repositories for the account or organization. For an existing repository, use `run-cloud-test.cmd -Upload`.
 
 ## Classic Token
 
@@ -91,10 +91,19 @@ This writes `cloud.local.json`, which is ignored by git. It still does not save 
 
 ## Run With Environment Variables
 
+For this workspace, the repository is already saved in `cloud.local.json`, so the shortest path is:
+
+```powershell
+.\run-cloud-test.cmd -Upload
+```
+
+When prompted for `GitHub token`, paste the full token and press Enter. The token is not saved to disk.
+
+You can also set the token manually before running:
+
 ```powershell
 $env:GITHUB_TOKEN = "your GitHub token"
-$env:GITHUB_REPOSITORY = "real-github-login/international-trade-ai"
-.\run-cloud-test.cmd -CreateRepo
+.\run-cloud-test.cmd -Upload
 ```
 
 ## Success Evidence
