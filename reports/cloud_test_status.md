@@ -1,12 +1,12 @@
 # Cloud Test Status
 
 - Status: BLOCKED
-- Stage: `configuration`
+- Stage: `remote_acceptance`
 - Local ready: `True`
-- Cloud config ready: `False`
+- Cloud config ready: `True`
 
 ## Missing
-- `GITHUB_TOKEN or GH_TOKEN`
+- None
 
 ## Connection Check Details
 
