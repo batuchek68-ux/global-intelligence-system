@@ -1,7 +1,7 @@
 # Cloud Test Status
 
-- Status: BLOCKED
-- Stage: `remote_acceptance`
+- Status: PASS
+- Stage: `completed`
 - Local ready: `True`
 - Cloud config ready: `True`
 
