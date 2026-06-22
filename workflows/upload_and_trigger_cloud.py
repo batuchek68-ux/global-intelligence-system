@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import argparse
 import base64
+import hashlib
 import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -26,6 +28,12 @@ SKIP_UPLOAD_FILES = {
     "reports/cloud_acceptance_remote.json",
     REPORT_RELATIVE,
 }
+TRANSIENT_ERROR_MARKERS = (
+    "UNEXPECTED_EOF_WHILE_READING",
+    "timed out",
+    "WinError 10054",
+    "Remote end closed connection",
+)
 
 
 def github_contents_request(
@@ -34,13 +42,17 @@ def github_contents_request(
     path: str,
     token: str,
     payload: dict | None = None,
+    query: dict[str, str] | None = None,
 ) -> tuple[int, dict | str | None]:
     data = None
     if payload is not None:
         data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
     encoded_path = "/".join(urllib.parse.quote(part) for part in path.split("/"))
+    url = f"https://api.github.com/repos/{repository}/contents/{encoded_path}"
+    if query:
+        url = f"{url}?{urllib.parse.urlencode(query)}"
     request = urllib.request.Request(
-        f"https://api.github.com/repos/{repository}/contents/{encoded_path}",
+        url,
         data=data,
         method=method,
         headers={
@@ -50,20 +62,27 @@ def github_contents_request(
             "X-GitHub-Api-Version": "2022-11-28",
         },
     )
-    try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            body = response.read().decode("utf-8")
-            if not body:
-                return response.status, None
-            return response.status, json.loads(body)
-    except Exception as exc:
-        if hasattr(exc, "read"):
+    for attempt in range(1, 4):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                body = response.read().decode("utf-8")
+                if not body:
+                    return response.status, None
+                return response.status, json.loads(body)
+        except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8")
             try:
-                return getattr(exc, "code", 0), json.loads(body) if body else {}
+                return exc.code, json.loads(body) if body else {}
             except json.JSONDecodeError:
-                return getattr(exc, "code", 0), body
-        return 0, str(exc)
+                return exc.code, body
+        except Exception as exc:
+            detail = str(exc)
+            if attempt < 3 and any(marker in detail for marker in TRANSIENT_ERROR_MARKERS):
+                time.sleep(attempt * 2)
+                continue
+            return 0, detail
+
+    return 0, "GitHub request failed after retries."
 
 
 def uploadable_files() -> list[Path]:
@@ -78,30 +97,75 @@ def uploadable_files() -> list[Path]:
     return files
 
 
-def get_existing_sha(repository: str, token: str, relative: str, branch: str) -> str | None:
-    query = urllib.parse.urlencode({"ref": branch})
-    status, data = github_contents_request("GET", repository, f"{relative}?{query}", token)
+def get_existing_file(repository: str, token: str, relative: str, branch: str) -> dict | None:
+    status, data = github_contents_request("GET", repository, relative, token, query={"ref": branch})
     if status == 200 and isinstance(data, dict):
-        return data.get("sha")
+        return data
     return None
+
+
+def get_existing_sha(repository: str, token: str, relative: str, branch: str) -> str | None:
+    existing = get_existing_file(repository, token, relative, branch)
+    if existing:
+        return existing.get("sha")
+    return None
+
+
+def git_blob_sha(content: bytes) -> str:
+    header = f"blob {len(content)}\0".encode("utf-8")
+    return hashlib.sha1(header + content).hexdigest()
+
+
+def missing_sha_error(status: int, data: dict | str | None) -> bool:
+    if status != 422:
+        return False
+    if isinstance(data, dict):
+        return "sha" in str(data.get("message", "")).lower()
+    return "sha" in str(data).lower()
 
 
 def upload_file(repository: str, token: str, path: Path, branch: str, message_prefix: str) -> dict:
     relative = path.relative_to(ROOT).as_posix()
-    sha = get_existing_sha(repository, token, relative, branch)
-    payload = {
-        "message": f"{message_prefix}: {relative}",
-        "content": base64.b64encode(path.read_bytes()).decode("ascii"),
-        "branch": branch,
-    }
-    if sha:
-        payload["sha"] = sha
+    content_bytes = path.read_bytes()
+    local_sha = git_blob_sha(content_bytes)
+    existing = get_existing_file(repository, token, relative, branch)
+    sha = existing.get("sha") if existing else None
+    if sha == local_sha:
+        return {
+            "path": relative,
+            "ok": True,
+            "status": 200,
+            "action": "skipped",
+            "retried_with_sha": False,
+            "details": None,
+        }
+    content = base64.b64encode(content_bytes).decode("ascii")
+
+    def build_payload(existing_sha: str | None) -> dict:
+        payload = {
+            "message": f"{message_prefix}: {relative}",
+            "content": content,
+            "branch": branch,
+        }
+        if existing_sha:
+            payload["sha"] = existing_sha
+        return payload
+
+    payload = build_payload(sha)
     status, data = github_contents_request("PUT", repository, relative, token, payload)
+    retried_with_sha = False
+    if missing_sha_error(status, data):
+        sha = get_existing_sha(repository, token, relative, branch)
+        if sha:
+            retried_with_sha = True
+            status, data = github_contents_request("PUT", repository, relative, token, build_payload(sha))
+
     return {
         "path": relative,
         "ok": status in (200, 201),
         "status": status,
         "action": "updated" if sha else "created",
+        "retried_with_sha": retried_with_sha,
         "details": data if status not in (200, 201) else None,
     }
 
@@ -117,14 +181,29 @@ def upload_repository(
     if max_files is not None:
         files = files[:max_files]
     results = []
+    auth_failed = False
     for index, path in enumerate(files, start=1):
-        results.append(upload_file(repository, token, path, branch, message_prefix))
+        result = upload_file(repository, token, path, branch, message_prefix)
+        results.append(result)
+        if result["status"] == 401:
+            auth_failed = True
+            break
         if index % 10 == 0:
             time.sleep(1)
     return {
-        "ok": all(item["ok"] for item in results),
+        "ok": len(results) == len(files) and all(item["ok"] for item in results),
+        "stage": "authentication_failed" if auth_failed else "uploaded",
+        "reason": (
+            "GitHub returned 401 Bad credentials during upload. Generate a new token, "
+            "make sure it has Contents: Read and write plus Actions: Read and write, then rerun."
+            if auth_failed
+            else None
+        ),
         "file_count": len(files),
         "uploaded": sum(1 for item in results if item["ok"]),
+        "skipped": sum(1 for item in results if item.get("action") == "skipped"),
+        "written": sum(1 for item in results if item.get("action") in {"created", "updated"} and item["ok"]),
+        "attempted": len(results),
         "failed": [item for item in results if not item["ok"]],
         "results": results,
     }
@@ -153,7 +232,7 @@ def upload_and_trigger(
     )
     result = {
         "ok": upload["ok"],
-        "stage": "uploaded",
+        "stage": upload.get("stage", "uploaded"),
         "repository": repository,
         "branch": branch,
         "upload": upload,
