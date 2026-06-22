@@ -108,6 +108,39 @@ def get_run(repository: str, token: str, run_id: int) -> dict:
     return {"ok": status == 200, "status": status, "data": data}
 
 
+def get_run_jobs(repository: str, token: str, run_id: int) -> dict:
+    status, data = github_request("GET", repository, f"/actions/runs/{run_id}/jobs", token)
+    jobs = data.get("jobs", []) if isinstance(data, dict) else []
+    failed_steps = []
+    for job in jobs:
+        for step in job.get("steps", []):
+            if step.get("conclusion") == "failure":
+                failed_steps.append(
+                    {
+                        "job": job.get("name"),
+                        "step": step.get("name"),
+                        "number": step.get("number"),
+                        "status": step.get("status"),
+                        "conclusion": step.get("conclusion"),
+                    }
+                )
+    return {
+        "ok": status == 200,
+        "status": status,
+        "jobs": [
+            {
+                "name": job.get("name"),
+                "status": job.get("status"),
+                "conclusion": job.get("conclusion"),
+                "html_url": job.get("html_url"),
+            }
+            for job in jobs
+        ],
+        "failed_steps": failed_steps,
+        "details": data if status != 200 else None,
+    }
+
+
 def wait_for_run(repository: str, token: str, run_id: int, timeout_seconds: int, interval_seconds: int) -> dict:
     deadline = time.time() + timeout_seconds
     latest: dict = {}
@@ -193,6 +226,8 @@ def trigger_cloud_acceptance(
                 "run_url": final_run.get("html_url", result.get("run_url")),
             }
         )
+        if final_run.get("status") == "completed":
+            result["jobs"] = get_run_jobs(repository, token, run_id)
     return result
 
 
