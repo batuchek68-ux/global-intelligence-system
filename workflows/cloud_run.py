@@ -187,6 +187,12 @@ def render_summary(result: dict) -> str:
                 f"- run_url: {acceptance.get('run_url')}",
             ]
         )
+        jobs = acceptance.get("jobs")
+        failed_steps = jobs.get("failed_steps") if isinstance(jobs, dict) else []
+        if failed_steps:
+            lines.append("- failed steps:")
+            for step in failed_steps:
+                lines.append(f"  - {step.get('job')} / {step.get('step')}")
     if not result.get("ok"):
         reason = result.get("reason")
         if not reason and isinstance(upload_stats, dict):
