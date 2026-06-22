@@ -12,16 +12,14 @@ C:\Users\Surface\Documents\智慧情报分析平台\02_源代码\international-t
 
 ## One Command Path
 
-Use this when the GitHub repository does not exist yet, or when you want the script to create the repository, upload the project, and trigger cloud acceptance:
+Use this when the GitHub repository already exists and you want the script to upload the project and trigger cloud acceptance:
 
 ```powershell
 cd C:\Users\Surface\Documents\智慧情报分析平台\02_源代码\international-trade-ai
-$env:GITHUB_TOKEN = "your GitHub token"
-$env:GITHUB_REPOSITORY = "real-github-login/international-trade-ai"
-.\run-cloud-test.cmd -CreateRepo
+.\run-cloud-test.cmd -Upload
 ```
 
-Replace `real-github-login` with the real GitHub account login. Do not copy Chinese example words, `owner/repository`, or `yourname/...` as the repository value.
+The repository is already saved in `cloud.local.json` for this workspace. If no token is configured, the command asks for `GitHub token` securely and does not save it to disk.
 
 For an interactive prompt that does not save the token to disk:
 
@@ -110,8 +108,8 @@ GITHUB_TOKEN or GH_TOKEN
 GITHUB_REPOSITORY
 ```
 
-After those are set, rerun:
+After those are set, rerun this for an existing repository:
 
 ```powershell
-.\run-cloud-test.cmd -CreateRepo
+.\run-cloud-test.cmd -Upload
 ```
