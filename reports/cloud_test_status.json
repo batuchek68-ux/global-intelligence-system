@@ -1,15 +1,13 @@
 {
   "ok": false,
-  "created_at": "2026-06-22T07:22:58.705370+00:00",
-  "stage": "configuration",
+  "created_at": "2026-06-22T07:47:14.735843+00:00",
+  "stage": "remote_acceptance",
   "local_ready": true,
-  "cloud_ready": false,
-  "missing": [
-    "GITHUB_TOKEN or GH_TOKEN"
-  ],
+  "cloud_ready": true,
+  "missing": [],
   "environment": {
-    "token_configured": false,
-    "token_source": "missing",
+    "token_configured": true,
+    "token_source": "environment",
     "repository_configured": true,
     "repository": "batuchek68-ux/global-intelligence-system",
     "local_config": {
@@ -19,7 +17,7 @@
       "branch": "main"
     }
   },
-  "token_source": "missing",
+  "token_source": "environment",
   "local_config": {
     "exists": true,
     "path": "cloud.local.json",
@@ -71,20 +69,122 @@
     "path": "reports/cloud_run.json",
     "data": {
       "ok": false,
-      "stage": "configuration",
-      "reason": "Set GITHUB_TOKEN or GH_TOKEN.",
-      "missing": [
-        "GITHUB_TOKEN or GH_TOKEN"
-      ],
-      "next_command": ".\\run-cloud-test.cmd -Upload",
-      "interactive_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\setup-cloud-test.ps1",
-      "manual_environment": [
-        "$env:GITHUB_TOKEN = \"your GitHub token\"",
-        "$env:GITHUB_REPOSITORY = \"owner/repository\"",
-        ".\\run-cloud-test.cmd -Upload"
-      ],
-      "python_command": "python workflows\\cloud_run.py --upload --confirm-upload",
-      "token_source": "missing"
+      "stage": "upload_or_acceptance_failed",
+      "repository": "batuchek68-ux/global-intelligence-system",
+      "branch": "main",
+      "token_source": "environment",
+      "plan": {
+        "connection_check": true,
+        "create_repo": false,
+        "upload": true,
+        "trigger": true
+      },
+      "connection": {
+        "ok": false,
+        "stage": "token",
+        "repository": "batuchek68-ux/global-intelligence-system",
+        "workflow": "cloud_acceptance.yml",
+        "token_source": "environment",
+        "checks": [
+          {
+            "name": "token",
+            "ok": false,
+            "status": 401,
+            "user": {
+              "login": null,
+              "id": null,
+              "type": null
+            },
+            "details": {
+              "message": "Bad credentials",
+              "documentation_url": "https://docs.github.com/rest",
+              "status": "401"
+            },
+            "scopes": []
+          },
+          {
+            "name": "repository",
+            "ok": false,
+            "status": 401,
+            "private": null,
+            "default_branch": null,
+            "permissions": null,
+            "details": {
+              "message": "Bad credentials",
+              "documentation_url": "https://docs.github.com/rest",
+              "status": "401"
+            }
+          },
+          {
+            "name": "workflow",
+            "ok": false,
+            "status": 401,
+            "workflow": "cloud_acceptance.yml",
+            "state": null,
+            "html_url": null,
+            "details": {
+              "message": "Bad credentials",
+              "documentation_url": "https://docs.github.com/rest",
+              "status": "401"
+            }
+          },
+          {
+            "name": "actions_runs",
+            "ok": false,
+            "status": 401,
+            "latest_run": null,
+            "details": {
+              "message": "Bad credentials",
+              "documentation_url": "https://docs.github.com/rest",
+              "status": "401"
+            }
+          }
+        ]
+      },
+      "upload_and_acceptance": {
+        "ok": false,
+        "stage": "authentication_failed",
+        "repository": "batuchek68-ux/global-intelligence-system",
+        "branch": "main",
+        "upload": {
+          "ok": false,
+          "stage": "authentication_failed",
+          "reason": "GitHub returned 401 Bad credentials during upload. Generate a new token, make sure it has Contents: Read and write plus Actions: Read and write, then rerun.",
+          "file_count": 105,
+          "uploaded": 0,
+          "skipped": 0,
+          "written": 0,
+          "attempted": 1,
+          "failed": [
+            {
+              "path": ".github/workflows/cloud_acceptance.yml",
+              "ok": false,
+              "status": 401,
+              "action": "created",
+              "retried_with_sha": false,
+              "details": {
+                "message": "Bad credentials",
+                "documentation_url": "https://docs.github.com/rest",
+                "status": "401"
+              }
+            }
+          ],
+          "results": [
+            {
+              "path": ".github/workflows/cloud_acceptance.yml",
+              "ok": false,
+              "status": 401,
+              "action": "created",
+              "retried_with_sha": false,
+              "details": {
+                "message": "Bad credentials",
+                "documentation_url": "https://docs.github.com/rest",
+                "status": "401"
+              }
+            }
+          ]
+        }
+      }
     }
   },
   "remote_acceptance": {
