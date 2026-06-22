@@ -1,0 +1,21 @@
+{
+  "ok": false,
+  "stage": "configuration",
+  "reason": "Set GITHUB_TOKEN or GH_TOKEN, and GITHUB_REPOSITORY or --repository owner/name.",
+  "missing": [
+    "GITHUB_TOKEN or GH_TOKEN"
+  ],
+  "root_commands": [
+    ".\\check-cloud-config-from-root.cmd",
+    ".\\setup-cloud-test-from-root.cmd",
+    ".\\run-cloud-test-from-root.cmd -CreateRepo"
+  ],
+  "source_commands": [
+    ".\\check-cloud-config.cmd",
+    ".\\setup-cloud-test.ps1",
+    ".\\run-cloud-test.cmd -CreateRepo"
+  ],
+  "token_storage": "Token is read from environment or prompt only; do not save it to files.",
+  "token_source": "missing",
+  "checks": []
+}
