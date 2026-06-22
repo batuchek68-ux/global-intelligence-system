@@ -120,6 +120,9 @@ REQUIRED_TEXT = {
     "run-cloud-test.ps1": [
         "GITHUB_TOKEN",
         "GITHUB_REPOSITORY",
+        "Read-Host",
+        "SecureString",
+        "PromptToken",
         "cloud.local.json",
         "cloud_run.py",
         "cloud_test_status.py",
@@ -145,6 +148,7 @@ REQUIRED_TEXT = {
         "run-cloud-test.ps1",
         "cloud_test_status.py",
         "CreateRepo",
+        "Upload",
     ],
     "运行云端测试.cmd": [
         "ExecutionPolicy Bypass",
@@ -243,7 +247,7 @@ REQUIRED_TEXT = {
     ],
     "docs/cloud-run.md": [
         "One Command Cloud Test",
-        ".\\run-cloud-test.cmd -CreateRepo",
+        ".\\run-cloud-test.cmd -Upload",
         "setup-cloud-test.ps1",
         "SaveRepository",
         "reports/cloud_run.json",
