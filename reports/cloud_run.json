@@ -11,109 +11,1150 @@
     "trigger": true
   },
   "connection": {
-    "ok": false,
-    "stage": "token",
+    "ok": true,
+    "stage": "ready",
     "repository": "batuchek68-ux/global-intelligence-system",
     "workflow": "cloud_acceptance.yml",
     "token_source": "environment",
     "checks": [
       {
         "name": "token",
-        "ok": false,
-        "status": 401,
+        "ok": true,
+        "status": 200,
         "user": {
-          "login": null,
-          "id": null,
-          "type": null
+          "login": "batuchek68-ux",
+          "id": 293273344,
+          "type": "User"
         },
-        "details": {
-          "message": "Bad credentials",
-          "documentation_url": "https://docs.github.com/rest",
-          "status": "401"
-        },
+        "details": null,
         "scopes": []
       },
       {
         "name": "repository",
-        "ok": false,
-        "status": 401,
-        "private": null,
-        "default_branch": null,
-        "permissions": null,
-        "details": {
-          "message": "Bad credentials",
-          "documentation_url": "https://docs.github.com/rest",
-          "status": "401"
-        }
+        "ok": true,
+        "status": 200,
+        "private": false,
+        "default_branch": "main",
+        "permissions": {
+          "admin": true,
+          "maintain": true,
+          "push": true,
+          "triage": true,
+          "pull": true
+        },
+        "details": null
       },
       {
         "name": "workflow",
-        "ok": false,
-        "status": 401,
+        "ok": true,
+        "status": 200,
         "workflow": "cloud_acceptance.yml",
-        "state": null,
-        "html_url": null,
-        "details": {
-          "message": "Bad credentials",
-          "documentation_url": "https://docs.github.com/rest",
-          "status": "401"
-        }
+        "state": "active",
+        "html_url": "https://github.com/batuchek68-ux/global-intelligence-system/blob/main/.github/workflows/cloud_acceptance.yml",
+        "details": null
       },
       {
         "name": "actions_runs",
-        "ok": false,
-        "status": 401,
-        "latest_run": null,
-        "details": {
-          "message": "Bad credentials",
-          "documentation_url": "https://docs.github.com/rest",
-          "status": "401"
-        }
+        "ok": true,
+        "status": 200,
+        "latest_run": {
+          "id": 27919721165,
+          "name": "Global Intelligence v3",
+          "node_id": "WFR_kwLOS6IIDs8AAAAGgCUizQ",
+          "head_branch": "main",
+          "head_sha": "9a618ec4bd0d9e9ea40a67830c17068f57c923e2",
+          "path": ".github/workflows/global-intelligence-v3.yml",
+          "display_title": "Global Intelligence v3",
+          "run_number": 19,
+          "event": "schedule",
+          "status": "completed",
+          "conclusion": "failure",
+          "workflow_id": 296029123,
+          "check_suite_id": 75250341574,
+          "check_suite_node_id": "CS_kwDOS6IIDs8AAAARhUUWxg",
+          "url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165",
+          "html_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27919721165",
+          "pull_requests": [],
+          "created_at": "2026-06-21T22:38:08Z",
+          "updated_at": "2026-06-21T22:38:23Z",
+          "actor": {
+            "login": "batuchek68-ux",
+            "id": 293273344,
+            "node_id": "U_kgDOEXr_AA",
+            "avatar_url": "https://avatars.githubusercontent.com/u/293273344?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/batuchek68-ux",
+            "html_url": "https://github.com/batuchek68-ux",
+            "followers_url": "https://api.github.com/users/batuchek68-ux/followers",
+            "following_url": "https://api.github.com/users/batuchek68-ux/following{/other_user}",
+            "gists_url": "https://api.github.com/users/batuchek68-ux/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/batuchek68-ux/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/batuchek68-ux/subscriptions",
+            "organizations_url": "https://api.github.com/users/batuchek68-ux/orgs",
+            "repos_url": "https://api.github.com/users/batuchek68-ux/repos",
+            "events_url": "https://api.github.com/users/batuchek68-ux/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/batuchek68-ux/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "run_attempt": 1,
+          "referenced_workflows": [],
+          "run_started_at": "2026-06-21T22:38:08Z",
+          "triggering_actor": {
+            "login": "batuchek68-ux",
+            "id": 293273344,
+            "node_id": "U_kgDOEXr_AA",
+            "avatar_url": "https://avatars.githubusercontent.com/u/293273344?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/batuchek68-ux",
+            "html_url": "https://github.com/batuchek68-ux",
+            "followers_url": "https://api.github.com/users/batuchek68-ux/followers",
+            "following_url": "https://api.github.com/users/batuchek68-ux/following{/other_user}",
+            "gists_url": "https://api.github.com/users/batuchek68-ux/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/batuchek68-ux/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/batuchek68-ux/subscriptions",
+            "organizations_url": "https://api.github.com/users/batuchek68-ux/orgs",
+            "repos_url": "https://api.github.com/users/batuchek68-ux/repos",
+            "events_url": "https://api.github.com/users/batuchek68-ux/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/batuchek68-ux/received_events",
+            "type": "User",
+            "user_view_type": "public",
+            "site_admin": false
+          },
+          "jobs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/jobs",
+          "logs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/logs",
+          "check_suite_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/check-suites/75250341574",
+          "artifacts_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/artifacts",
+          "cancel_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/cancel",
+          "rerun_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/rerun",
+          "previous_attempt_url": null,
+          "workflow_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/workflows/296029123",
+          "head_commit": {
+            "id": "9a618ec4bd0d9e9ea40a67830c17068f57c923e2",
+            "tree_id": "5a6015e2086d4733ffd07c54341f2cc3d8c8fea6",
+            "message": "update intelligence",
+            "timestamp": "2026-06-21T17:12:09Z",
+            "author": {
+              "name": "github-actions",
+              "email": "github-actions@github.com"
+            },
+            "committer": {
+              "name": "github-actions",
+              "email": "github-actions@github.com"
+            }
+          },
+          "repository": {
+            "id": 1268910094,
+            "node_id": "R_kgDOS6IIDg",
+            "name": "global-intelligence-system",
+            "full_name": "batuchek68-ux/global-intelligence-system",
+            "private": false,
+            "owner": {
+              "login": "batuchek68-ux",
+              "id": 293273344,
+              "node_id": "U_kgDOEXr_AA",
+              "avatar_url": "https://avatars.githubusercontent.com/u/293273344?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/batuchek68-ux",
+              "html_url": "https://github.com/batuchek68-ux",
+              "followers_url": "https://api.github.com/users/batuchek68-ux/followers",
+              "following_url": "https://api.github.com/users/batuchek68-ux/following{/other_user}",
+              "gists_url": "https://api.github.com/users/batuchek68-ux/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/batuchek68-ux/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/batuchek68-ux/subscriptions",
+              "organizations_url": "https://api.github.com/users/batuchek68-ux/orgs",
+              "repos_url": "https://api.github.com/users/batuchek68-ux/repos",
+              "events_url": "https://api.github.com/users/batuchek68-ux/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/batuchek68-ux/received_events",
+              "type": "User",
+              "user_view_type": "public",
+              "site_admin": false
+            },
+            "html_url": "https://github.com/batuchek68-ux/global-intelligence-system",
+            "description": null,
+            "fork": false,
+            "url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system",
+            "forks_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/forks",
+            "keys_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/teams",
+            "hooks_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/hooks",
+            "issue_events_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/events",
+            "assignees_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/tags",
+            "blobs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/languages",
+            "stargazers_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/stargazers",
+            "contributors_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/contributors",
+            "subscribers_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/subscribers",
+            "subscription_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/subscription",
+            "commits_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/merges",
+            "archive_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/downloads",
+            "issues_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/labels{/name}",
+            "releases_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/deployments"
+          },
+          "head_repository": {
+            "id": 1268910094,
+            "node_id": "R_kgDOS6IIDg",
+            "name": "global-intelligence-system",
+            "full_name": "batuchek68-ux/global-intelligence-system",
+            "private": false,
+            "owner": {
+              "login": "batuchek68-ux",
+              "id": 293273344,
+              "node_id": "U_kgDOEXr_AA",
+              "avatar_url": "https://avatars.githubusercontent.com/u/293273344?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/batuchek68-ux",
+              "html_url": "https://github.com/batuchek68-ux",
+              "followers_url": "https://api.github.com/users/batuchek68-ux/followers",
+              "following_url": "https://api.github.com/users/batuchek68-ux/following{/other_user}",
+              "gists_url": "https://api.github.com/users/batuchek68-ux/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/batuchek68-ux/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/batuchek68-ux/subscriptions",
+              "organizations_url": "https://api.github.com/users/batuchek68-ux/orgs",
+              "repos_url": "https://api.github.com/users/batuchek68-ux/repos",
+              "events_url": "https://api.github.com/users/batuchek68-ux/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/batuchek68-ux/received_events",
+              "type": "User",
+              "user_view_type": "public",
+              "site_admin": false
+            },
+            "html_url": "https://github.com/batuchek68-ux/global-intelligence-system",
+            "description": null,
+            "fork": false,
+            "url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system",
+            "forks_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/forks",
+            "keys_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/teams",
+            "hooks_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/hooks",
+            "issue_events_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/events",
+            "assignees_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/tags",
+            "blobs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/languages",
+            "stargazers_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/stargazers",
+            "contributors_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/contributors",
+            "subscribers_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/subscribers",
+            "subscription_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/subscription",
+            "commits_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/merges",
+            "archive_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/downloads",
+            "issues_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/labels{/name}",
+            "releases_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/deployments"
+          }
+        },
+        "details": null
       }
     ]
   },
   "upload_and_acceptance": {
     "ok": false,
-    "stage": "authentication_failed",
+    "stage": "acceptance_failed",
     "repository": "batuchek68-ux/global-intelligence-system",
     "branch": "main",
     "upload": {
-      "ok": false,
-      "stage": "authentication_failed",
-      "reason": "GitHub returned 401 Bad credentials during upload. Generate a new token, make sure it has Contents: Read and write plus Actions: Read and write, then rerun.",
+      "ok": true,
+      "stage": "uploaded",
+      "reason": null,
       "file_count": 105,
-      "uploaded": 0,
-      "skipped": 0,
-      "written": 0,
-      "attempted": 1,
-      "failed": [
-        {
-          "path": ".github/workflows/cloud_acceptance.yml",
-          "ok": false,
-          "status": 401,
-          "action": "created",
-          "retried_with_sha": false,
-          "details": {
-            "message": "Bad credentials",
-            "documentation_url": "https://docs.github.com/rest",
-            "status": "401"
-          }
-        }
-      ],
+      "uploaded": 105,
+      "skipped": 88,
+      "written": 17,
+      "attempted": 105,
+      "failed": [],
       "results": [
         {
           "path": ".github/workflows/cloud_acceptance.yml",
-          "ok": false,
-          "status": 401,
-          "action": "created",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
           "retried_with_sha": false,
-          "details": {
-            "message": "Bad credentials",
-            "documentation_url": "https://docs.github.com/rest",
-            "status": "401"
-          }
+          "details": null
+        },
+        {
+          "path": ".github/workflows/international_trade_ops.yml",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": ".github/workflows/owner_decision.yml",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": ".github/workflows/watchdog.yml",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": ".gitignore",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "check-cloud-config.cmd",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "check-cloud-config.ps1",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "cloud.env.example.ps1",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "cloud.local.example.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "cloud.local.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "comm/__init__.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "comm/github_issue.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "comm/outbox/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "comm/outbox/demo-port-logistics-modernization.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "comm/wechat.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "config.example.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "content/__init__.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "content/video_script.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/__init__.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/decision.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/executor.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/judge.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/models.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/operator.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/planner.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/project_loader.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/report.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "core/storage.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "docs/cloud-run.md",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "docs/github-deployment-runbook.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "docs/github-headquarters.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "docs/github-token-setup.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "intelligence/__init__.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "intelligence/brief_generator.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "media/drafts/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "media/drafts/demo-port-logistics-modernization.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "media/drafts/internal-brief-library-cleanup.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/cases/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/cases/demo-port-logistics-modernization.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/cases/internal-brief-library-cleanup.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/continuations/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/continuations/demo-port-logistics-modernization-2026-06-21T073929+0000.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/continuations/demo-port-logistics-modernization-2026-06-21T073952+0000.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/continuations/demo-port-logistics-modernization-2026-06-21T074157+0000.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/continuations/demo-port-logistics-modernization-2026-06-21T080600+0000.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/continuations/demo-port-logistics-modernization-2026-06-21T082747+0000.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/decisions/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/decisions/demo-port-logistics-modernization-2026-06-21T073929+0000.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/decisions/demo-port-logistics-modernization-2026-06-21T073952+0000.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/decisions/demo-port-logistics-modernization-2026-06-21T074157+0000.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/decisions/demo-port-logistics-modernization-2026-06-21T080600+0000.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/decisions/demo-port-logistics-modernization-2026-06-21T082747+0000.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/execution_logs/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/execution_logs/demo-port-logistics-modernization.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/execution_logs/internal-brief-library-cleanup.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/last_run.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/operator_logs/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/operator_logs/demo-port-logistics-modernization.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "memory/operator_logs/internal-brief-library-cleanup.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "projects/active/demo-port-logistics.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "projects/active/internal-brief-library.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "projects/templates/project_intake.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "pyproject.toml",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "README.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/cloud_acceptance.json",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/cloud_acceptance.md",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/cloud_connection_check.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/cloud_create_upload_and_acceptance.json",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/cloud_run.json",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/cloud_test_status.json",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/cloud_test_status.md",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/headquarters_status.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/owner_inbox.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "reports/watchdog_status.md",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "requirements.txt",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "research/briefs/.gitkeep",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "research/briefs/demo-port-logistics-modernization.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "research/briefs/internal-brief-library-cleanup.md",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "run-cloud-test.cmd",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "run-cloud-test.ps1",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "setup-cloud-test.ps1",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "tests/__init__.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "tests/test_cycle.py",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/__init__.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/cloud_acceptance.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/cloud_config.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/cloud_connection_check.py",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/cloud_run.py",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/cloud_test_status.py",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/create_repo_upload_and_trigger.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/daily_job.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/ensure_labels.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/health_check.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/persist_state.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/preflight_check.py",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/prepare_release.py",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/publish_summary.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/resolve_major_matter.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/trigger_cloud_acceptance.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/upload_and_trigger_cloud.py",
+          "ok": true,
+          "status": 200,
+          "action": "updated",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "workflows/watchdog.py",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "运行云端测试.cmd",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
+        },
+        {
+          "path": "运行云端测试.ps1",
+          "ok": true,
+          "status": 200,
+          "action": "skipped",
+          "retried_with_sha": false,
+          "details": null
         }
       ]
+    },
+    "acceptance": {
+      "ok": false,
+      "stage": "completed",
+      "repository": "batuchek68-ux/global-intelligence-system",
+      "workflow": "cloud_acceptance.yml",
+      "run_id": 27937862686,
+      "run_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27937862686",
+      "status": "completed",
+      "conclusion": "failure",
+      "ref": "main",
+      "created_at": "2026-06-22T07:53:55Z",
+      "timed_out": false
     }
   }
 }
