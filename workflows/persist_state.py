@@ -32,6 +32,29 @@ def has_changes() -> bool:
     return bool(result.stdout.strip())
 
 
+def target_branch() -> str | None:
+    env_branch = os.getenv("GITHUB_REF_NAME")
+    if env_branch:
+        return env_branch
+    result = run(["git", "rev-parse", "--abbrev-ref", "HEAD"])
+    branch = result.stdout.strip()
+    if result.returncode == 0 and branch and branch != "HEAD":
+        return branch
+    return None
+
+
+def push_state(branch: str | None) -> subprocess.CompletedProcess[str]:
+    if branch:
+        return run(["git", "push", "origin", f"HEAD:{branch}"])
+    return run(["git", "push"])
+
+
+def pull_rebase(branch: str | None) -> subprocess.CompletedProcess[str]:
+    if not branch:
+        return subprocess.CompletedProcess(["git", "pull"], 0, "", "")
+    return run(["git", "pull", "--rebase", "--autostash", "origin", branch])
+
+
 def persist_state(message: str | None = None) -> dict:
     if not git_available():
         return {"committed": False, "reason": "git is not available"}
@@ -51,11 +74,30 @@ def persist_state(message: str | None = None) -> dict:
     if commit_result.returncode != 0:
         return {"committed": False, "reason": commit_result.stderr.strip() or commit_result.stdout.strip()}
 
-    push_result = run(["git", "push"])
-    if push_result.returncode != 0:
-        return {"committed": True, "pushed": False, "reason": push_result.stderr.strip() or push_result.stdout.strip()}
+    branch = target_branch()
+    pull_result = pull_rebase(branch)
+    if pull_result.returncode != 0:
+        return {
+            "committed": True,
+            "pushed": False,
+            "branch": branch,
+            "reason": pull_result.stderr.strip() or pull_result.stdout.strip(),
+        }
 
-    return {"committed": True, "pushed": True}
+    push_result = push_state(branch)
+    if push_result.returncode != 0:
+        retry_pull = pull_rebase(branch)
+        if retry_pull.returncode == 0:
+            push_result = push_state(branch)
+    if push_result.returncode != 0:
+        return {
+            "committed": True,
+            "pushed": False,
+            "branch": branch,
+            "reason": push_result.stderr.strip() or push_result.stdout.strip(),
+        }
+
+    return {"committed": True, "pushed": True, "branch": branch}
 
 
 def main() -> None:
