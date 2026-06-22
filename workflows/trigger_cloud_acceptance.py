@@ -17,6 +17,13 @@ if str(ROOT) not in sys.path:
 REPORT_RELATIVE = "reports/cloud_acceptance_remote.json"
 REPORT = ROOT / REPORT_RELATIVE
 WORKFLOW_FILE = "cloud_acceptance.yml"
+TRANSIENT_ERROR_MARKERS = (
+    "UNEXPECTED_EOF_WHILE_READING",
+    "timed out",
+    "WinError 10054",
+    "Remote end closed connection",
+    "Connection reset",
+)
 
 from workflows.cloud_config import configured_repository, configured_token
 
@@ -35,30 +42,39 @@ def github_request(
     data = None
     if payload is not None:
         data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-    request = urllib.request.Request(
-        f"https://api.github.com/repos/{repository}{path}",
-        data=data,
-        method=method,
-        headers={
-            "Authorization": f"Bearer {token}",
-            "Accept": "application/vnd.github+json",
-            "Content-Type": "application/json",
-            "X-GitHub-Api-Version": "2022-11-28",
-        },
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=30) as response:
-            body = response.read().decode("utf-8")
-            if not body:
-                return response.status, None
-            return response.status, json.loads(body)
-    except urllib.error.HTTPError as exc:
-        body = exc.read().decode("utf-8")
+    for attempt in range(1, 4):
+        request = urllib.request.Request(
+            f"https://api.github.com/repos/{repository}{path}",
+            data=data,
+            method=method,
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Accept": "application/vnd.github+json",
+                "Content-Type": "application/json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+        )
         try:
-            parsed: dict | list | str = json.loads(body) if body else {}
-        except json.JSONDecodeError:
-            parsed = body
-        return exc.code, parsed
+            with urllib.request.urlopen(request, timeout=30) as response:
+                body = response.read().decode("utf-8")
+                if not body:
+                    return response.status, None
+                return response.status, json.loads(body)
+        except urllib.error.HTTPError as exc:
+            body = exc.read().decode("utf-8")
+            try:
+                parsed: dict | list | str = json.loads(body) if body else {}
+            except json.JSONDecodeError:
+                parsed = body
+            return exc.code, parsed
+        except Exception as exc:
+            detail = str(exc)
+            if attempt < 3 and any(marker in detail for marker in TRANSIENT_ERROR_MARKERS):
+                time.sleep(attempt * 2)
+                continue
+            return 0, {"message": detail, "stage": "network_error"}
+
+    return 0, {"message": "GitHub request failed after retries.", "stage": "network_error"}
 
 
 def get_workflow(repository: str, token: str) -> dict:
