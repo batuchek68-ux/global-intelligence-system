@@ -1,0 +1,36 @@
+{
+  "command_model": {
+    "github": "cloud AI headquarters",
+    "codex": "24h autonomous executive",
+    "owner": "decides only major matters"
+  },
+  "major_matter_rules": {
+    "risk_levels": ["medium", "high"],
+    "amount_threshold": 100000,
+    "keywords": [
+      "contract",
+      "payment",
+      "guarantee",
+      "claim",
+      "arbitration",
+      "sanction",
+      "export control",
+      "customs",
+      "compliance",
+      "publish",
+      "customer promise"
+    ]
+  },
+  "github_actions": {
+    "manual_run": true,
+    "daily_schedule": "20 1 * * *",
+    "create_issue_for_major_matter": true,
+    "upload_artifacts": true
+  },
+  "secrets": {
+    "OPENAI_API_KEY": "optional",
+    "BING_SEARCH_KEY": "optional",
+    "WECHAT_WEBHOOK_URL": "optional",
+    "GITHUB_TOKEN": "provided by GitHub Actions"
+  }
+}
