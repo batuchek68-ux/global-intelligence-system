@@ -1,12 +1,12 @@
 # Cloud Test Status
 
 - Status: BLOCKED
-- Stage: `remote_acceptance`
+- Stage: `configuration`
 - Local ready: `True`
-- Cloud config ready: `True`
+- Cloud config ready: `False`
 
 ## Missing
-- None
+- `GITHUB_TOKEN or GH_TOKEN`
 
 ## Connection Check Details
 
@@ -20,7 +20,7 @@ Root commands:
 ```powershell
 .\check-cloud-config-from-root.cmd
 .\setup-cloud-test-from-root.cmd
-.\run-cloud-test-from-root.cmd -CreateRepo
+.\run-cloud-test-from-root.cmd -Upload
 ```
 
 ## Next Commands
@@ -30,9 +30,16 @@ Use real values only. Do not copy placeholder text such as `owner/repository`, `
 From the organized project root:
 
 ```powershell
+.\run-cloud-test-from-root.cmd -Upload
+```
+
+If no token is configured, the command prompts for `GitHub token` and does not save it to disk.
+
+Optional checks:
+
+```powershell
 .\check-cloud-config-from-root.cmd
 .\setup-cloud-test-from-root.cmd
-.\run-cloud-test-from-root.cmd -CreateRepo
 ```
 
 From the source project directory:
@@ -40,15 +47,13 @@ From the source project directory:
 Token setup details: `docs/github-token-setup.md`
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup-cloud-test.ps1
+.\run-cloud-test.cmd -Upload
 ```
 
-or:
+Interactive setup is still available:
 
 ```powershell
-$env:GITHUB_TOKEN = "ghp_real_token_here"
-$env:GITHUB_REPOSITORY = "real-github-login/international-trade-ai"
-.\run-cloud-test.cmd -CreateRepo
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup-cloud-test.ps1
 ```
 
 ## Completion Evidence Required
