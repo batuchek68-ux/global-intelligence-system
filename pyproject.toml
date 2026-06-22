@@ -1,0 +1,9 @@
+[project]
+name = "international-trade-ai"
+version = "0.1.0"
+description = "GitHub-runnable operating system for international engineering trade, research intelligence, video drafting, and WeChat project follow-up."
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
