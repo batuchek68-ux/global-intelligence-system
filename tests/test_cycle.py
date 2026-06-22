@@ -364,6 +364,33 @@ class OperatingCycleTests(unittest.TestCase):
         self.assertFalse(result["ok"])
         self.assertEqual(result["stage"], "workflow_lookup")
 
+    def test_trigger_cloud_acceptance_extracts_failed_steps(self) -> None:
+        original_request = trigger_module.github_request
+
+        def fake_request(method, repository, path, token, payload=None):
+            return 200, {
+                "jobs": [
+                    {
+                        "name": "cloud-acceptance",
+                        "status": "completed",
+                        "conclusion": "failure",
+                        "html_url": "https://example.test/job",
+                        "steps": [
+                            {"name": "Run tests", "number": 1, "status": "completed", "conclusion": "success"},
+                            {"name": "Persist acceptance evidence", "number": 2, "status": "completed", "conclusion": "failure"},
+                        ],
+                    }
+                ]
+            }
+
+        trigger_module.github_request = fake_request
+        try:
+            result = trigger_module.get_run_jobs("owner/repo", "token", 123)
+        finally:
+            trigger_module.github_request = original_request
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["failed_steps"][0]["step"], "Persist acceptance evidence")
+
     def test_upload_and_trigger_requires_confirmation(self) -> None:
         result = upload_and_trigger("owner/repo", "token", confirm_upload=False)
         self.assertFalse(result["ok"])
@@ -438,11 +465,17 @@ class OperatingCycleTests(unittest.TestCase):
 
     def test_cloud_connection_check_uses_local_repository_config(self) -> None:
         original_configured_repository = connection_module.configured_repository
+        original_repository_env = os.environ.get("GITHUB_REPOSITORY")
         connection_module.configured_repository = lambda default=None: default or "owner/from-local-config"
         try:
+            os.environ.pop("GITHUB_REPOSITORY", None)
             args = connection_module.parse_args([])
         finally:
             connection_module.configured_repository = original_configured_repository
+            if original_repository_env is None:
+                os.environ.pop("GITHUB_REPOSITORY", None)
+            else:
+                os.environ["GITHUB_REPOSITORY"] = original_repository_env
         self.assertEqual(args.repository, "owner/from-local-config")
 
     def test_cloud_run_reports_missing_config(self) -> None:
