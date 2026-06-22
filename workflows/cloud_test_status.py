@@ -85,10 +85,10 @@ def build_status() -> dict:
         "environment": env_status(),
         "token_source": source,
         "local_config": config,
-        "next_command": ".\\run-cloud-test.cmd -CreateRepo",
+        "next_command": ".\\run-cloud-test.cmd -Upload",
         "interactive_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\setup-cloud-test.ps1",
         "root_check_command": ".\\check-cloud-config-from-root.cmd",
-        "root_next_command": ".\\run-cloud-test-from-root.cmd -CreateRepo",
+        "root_next_command": ".\\run-cloud-test-from-root.cmd -Upload",
         "root_interactive_command": ".\\setup-cloud-test-from-root.cmd",
         "token_setup_doc": "docs/github-token-setup.md",
         "completion_evidence_required": [
@@ -149,9 +149,16 @@ def render_status(status: dict) -> str:
             "From the organized project root:",
             "",
             "```powershell",
+            status["root_next_command"],
+            "```",
+            "",
+            "If no token is configured, the command prompts for `GitHub token` and does not save it to disk.",
+            "",
+            "Optional checks:",
+            "",
+            "```powershell",
             status["root_check_command"],
             status["root_interactive_command"],
-            status["root_next_command"],
             "```",
             "",
             "From the source project directory:",
@@ -159,15 +166,13 @@ def render_status(status: dict) -> str:
             "Token setup details: `docs/github-token-setup.md`",
             "",
             "```powershell",
-            status["interactive_command"],
+            status["next_command"],
             "```",
             "",
-            "or:",
+            "Interactive setup is still available:",
             "",
             "```powershell",
-            '$env:GITHUB_TOKEN = "ghp_real_token_here"',
-            '$env:GITHUB_REPOSITORY = "real-github-login/international-trade-ai"',
-            status["next_command"],
+            status["interactive_command"],
             "```",
             "",
             "## Completion Evidence Required",
@@ -184,10 +189,36 @@ def write_reports(status: dict) -> None:
     STATUS_MD.write_text(render_status(status), encoding="utf-8")
 
 
+def render_console_summary(status: dict) -> str:
+    lines = [
+        "Cloud test status",
+        f"- ok: {bool(status.get('ok'))}",
+        f"- stage: {status.get('stage')}",
+        f"- local_ready: {bool(status.get('local_ready'))}",
+        f"- cloud_ready: {bool(status.get('cloud_ready'))}",
+        f"- repository: {status.get('environment', {}).get('repository')}",
+        f"- status_report: {STATUS_MD_RELATIVE}",
+    ]
+    missing = status.get("missing") or []
+    if missing:
+        lines.append("- missing: " + ", ".join(missing))
+    else:
+        lines.append("- missing: None")
+    if not status.get("ok"):
+        lines.extend(
+            [
+                "- next from source directory:",
+                f"  {status['next_command']}",
+                "- full evidence is saved in reports/cloud_test_status.json",
+            ]
+        )
+    return "\n".join(lines)
+
+
 def main() -> None:
     status = build_status()
     write_reports(status)
-    print(json.dumps(status, ensure_ascii=False, indent=2))
+    print(render_console_summary(status))
     if not status["ok"]:
         raise SystemExit(1 if status.get("stage") != "configuration" else 2)
 
