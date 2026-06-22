@@ -1,13 +1,15 @@
 {
   "ok": false,
-  "created_at": "2026-06-22T06:09:39.576928+00:00",
-  "stage": "remote_acceptance",
+  "created_at": "2026-06-22T07:22:58.705370+00:00",
+  "stage": "configuration",
   "local_ready": true,
-  "cloud_ready": true,
-  "missing": [],
+  "cloud_ready": false,
+  "missing": [
+    "GITHUB_TOKEN or GH_TOKEN"
+  ],
   "environment": {
-    "token_configured": true,
-    "token_source": "environment",
+    "token_configured": false,
+    "token_source": "missing",
     "repository_configured": true,
     "repository": "batuchek68-ux/global-intelligence-system",
     "local_config": {
@@ -17,17 +19,17 @@
       "branch": "main"
     }
   },
-  "token_source": "environment",
+  "token_source": "missing",
   "local_config": {
     "exists": true,
     "path": "cloud.local.json",
     "repository": "batuchek68-ux/global-intelligence-system",
     "branch": "main"
   },
-  "next_command": ".\\run-cloud-test.cmd -CreateRepo",
+  "next_command": ".\\run-cloud-test.cmd -Upload",
   "interactive_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\setup-cloud-test.ps1",
   "root_check_command": ".\\check-cloud-config-from-root.cmd",
-  "root_next_command": ".\\run-cloud-test-from-root.cmd -CreateRepo",
+  "root_next_command": ".\\run-cloud-test-from-root.cmd -Upload",
   "root_interactive_command": ".\\setup-cloud-test-from-root.cmd",
   "token_setup_doc": "docs/github-token-setup.md",
   "completion_evidence_required": [
@@ -52,12 +54,12 @@
       "root_commands": [
         ".\\check-cloud-config-from-root.cmd",
         ".\\setup-cloud-test-from-root.cmd",
-        ".\\run-cloud-test-from-root.cmd -CreateRepo"
+        ".\\run-cloud-test-from-root.cmd -Upload"
       ],
       "source_commands": [
         ".\\check-cloud-config.cmd",
         ".\\setup-cloud-test.ps1",
-        ".\\run-cloud-test.cmd -CreateRepo"
+        ".\\run-cloud-test.cmd -Upload"
       ],
       "token_storage": "Token is read from environment or prompt only; do not save it to files.",
       "token_source": "missing",
@@ -69,94 +71,20 @@
     "path": "reports/cloud_run.json",
     "data": {
       "ok": false,
-      "stage": "create_upload_or_acceptance_failed",
-      "repository": "batuchek68-ux/international-trade-ai",
-      "branch": "main",
-      "token_source": "environment",
-      "plan": {
-        "connection_check": true,
-        "create_repo": true,
-        "upload": true,
-        "trigger": true
-      },
-      "connection": {
-        "ok": false,
-        "stage": "repository",
-        "repository": "batuchek68-ux/international-trade-ai",
-        "workflow": "cloud_acceptance.yml",
-        "token_source": "environment",
-        "checks": [
-          {
-            "name": "token",
-            "ok": true,
-            "status": 200,
-            "user": {
-              "login": "batuchek68-ux",
-              "id": 293273344,
-              "type": "User"
-            },
-            "details": null,
-            "scopes": []
-          },
-          {
-            "name": "repository",
-            "ok": false,
-            "status": 404,
-            "private": null,
-            "default_branch": null,
-            "permissions": null,
-            "details": {
-              "message": "Not Found",
-              "documentation_url": "https://docs.github.com/rest/repos/repos#get-a-repository",
-              "status": "404"
-            }
-          },
-          {
-            "name": "workflow",
-            "ok": false,
-            "status": 404,
-            "workflow": "cloud_acceptance.yml",
-            "state": null,
-            "html_url": null,
-            "details": {
-              "message": "Not Found",
-              "documentation_url": "https://docs.github.com/rest/actions/workflows#get-a-workflow",
-              "status": "404"
-            }
-          },
-          {
-            "name": "actions_runs",
-            "ok": false,
-            "status": 404,
-            "latest_run": null,
-            "details": {
-              "message": "Not Found",
-              "documentation_url": "https://docs.github.com/rest/actions/workflow-runs#list-workflow-runs-for-a-repository",
-              "status": "404"
-            }
-          }
-        ]
-      },
-      "create_upload_and_acceptance": {
-        "ok": false,
-        "stage": "repository",
-        "repository": "batuchek68-ux/international-trade-ai",
-        "ensure": {
-          "ok": false,
-          "stage": "create_failed",
-          "repository": "batuchek68-ux/international-trade-ai",
-          "details": {
-            "created": false,
-            "status": 403,
-            "data": {
-              "message": "Resource not accessible by personal access token",
-              "documentation_url": "https://docs.github.com/rest/repos/repos#create-a-repository-for-the-authenticated-user",
-              "status": "403"
-            },
-            "repository": "batuchek68-ux/international-trade-ai"
-          }
-        }
-      }
+      "stage": "configuration",
+      "reason": "Set GITHUB_TOKEN or GH_TOKEN.",
+      "missing": [
+        "GITHUB_TOKEN or GH_TOKEN"
+      ],
+      "next_command": ".\\run-cloud-test.cmd -Upload",
+      "interactive_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\setup-cloud-test.ps1",
+      "manual_environment": [
+        "$env:GITHUB_TOKEN = \"your GitHub token\"",
+        "$env:GITHUB_REPOSITORY = \"owner/repository\"",
+        ".\\run-cloud-test.cmd -Upload"
+      ],
+      "python_command": "python workflows\\cloud_run.py --upload --confirm-upload",
+      "token_source": "missing"
     }
   },
   "remote_acceptance": {
