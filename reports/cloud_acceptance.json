@@ -1,0 +1,137 @@
+{
+  "ok": true,
+  "created_at": "2026-06-22T01:14:12.299550+00:00",
+  "repository": "local",
+  "run_id": "local",
+  "command_model": {
+    "github": "cloud AI headquarters",
+    "codex": "24h autonomous executive",
+    "owner": "decides only major matters"
+  },
+  "summary": {
+    "projects": 2,
+    "cases": 2,
+    "major_matters": 1,
+    "resolved_major_matters": 1,
+    "waiting_for_owner": 0,
+    "autonomous_cases": 1,
+    "execution_logs": 2
+  },
+  "checks": [
+    {
+      "name": "file:.github/workflows/international_trade_ops.yml",
+      "ok": true,
+      "evidence": ".github/workflows/international_trade_ops.yml"
+    },
+    {
+      "name": "file:.github/workflows/owner_decision.yml",
+      "ok": true,
+      "evidence": ".github/workflows/owner_decision.yml"
+    },
+    {
+      "name": "file:.github/workflows/watchdog.yml",
+      "ok": true,
+      "evidence": ".github/workflows/watchdog.yml"
+    },
+    {
+      "name": "file:.github/workflows/cloud_acceptance.yml",
+      "ok": true,
+      "evidence": ".github/workflows/cloud_acceptance.yml"
+    },
+    {
+      "name": "file:reports/headquarters_status.md",
+      "ok": true,
+      "evidence": "reports/headquarters_status.md"
+    },
+    {
+      "name": "file:reports/owner_inbox.md",
+      "ok": true,
+      "evidence": "reports/owner_inbox.md"
+    },
+    {
+      "name": "file:reports/watchdog_status.md",
+      "ok": true,
+      "evidence": "reports/watchdog_status.md"
+    },
+    {
+      "name": "file:memory/last_run.json",
+      "ok": true,
+      "evidence": "memory/last_run.json"
+    },
+    {
+      "name": "text:.github/workflows/international_trade_ops.yml:python workflows/daily_job.py",
+      "ok": true,
+      "evidence": ".github/workflows/international_trade_ops.yml"
+    },
+    {
+      "name": "text:.github/workflows/international_trade_ops.yml:python workflows/persist_state.py",
+      "ok": true,
+      "evidence": ".github/workflows/international_trade_ops.yml"
+    },
+    {
+      "name": "text:.github/workflows/owner_decision.yml:issue_comment",
+      "ok": true,
+      "evidence": ".github/workflows/owner_decision.yml"
+    },
+    {
+      "name": "text:.github/workflows/owner_decision.yml:python workflows/resolve_major_matter.py",
+      "ok": true,
+      "evidence": ".github/workflows/owner_decision.yml"
+    },
+    {
+      "name": "text:.github/workflows/watchdog.yml:python workflows/persist_state.py",
+      "ok": true,
+      "evidence": ".github/workflows/watchdog.yml"
+    },
+    {
+      "name": "text:.github/workflows/cloud_acceptance.yml:python workflows/cloud_acceptance.py",
+      "ok": true,
+      "evidence": ".github/workflows/cloud_acceptance.yml"
+    },
+    {
+      "name": "text:reports/headquarters_status.md:Execution status",
+      "ok": true,
+      "evidence": "reports/headquarters_status.md"
+    },
+    {
+      "name": "text:reports/owner_inbox.md:Owner Inbox",
+      "ok": true,
+      "evidence": "reports/owner_inbox.md"
+    },
+    {
+      "name": "text:reports/watchdog_status.md:24h Codex Watchdog",
+      "ok": true,
+      "evidence": "reports/watchdog_status.md"
+    },
+    {
+      "name": "last_run:projects_scanned",
+      "ok": true,
+      "evidence": "project_count=2"
+    },
+    {
+      "name": "last_run:cases_created",
+      "ok": true,
+      "evidence": "case_count=2, cases=2"
+    },
+    {
+      "name": "execution_logs:one_per_case",
+      "ok": true,
+      "evidence": "execution_logs=2, cases=2"
+    },
+    {
+      "name": "owner_boundary:major_matters_identified",
+      "ok": true,
+      "evidence": "major_matter_count=1, waiting_for_owner=0"
+    },
+    {
+      "name": "owner_boundary:resolved_or_waiting",
+      "ok": true,
+      "evidence": "major=1, resolved=1, waiting=0"
+    },
+    {
+      "name": "codex_autonomy:autonomous_cases_recorded",
+      "ok": true,
+      "evidence": "autonomous_cases=1"
+    }
+  ]
+}
