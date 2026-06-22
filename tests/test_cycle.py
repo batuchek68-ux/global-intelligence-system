@@ -529,7 +529,15 @@ class OperatingCycleTests(unittest.TestCase):
         self.assertEqual(result["stage"], "missing")
 
     def test_publish_summary_skips_without_github_env(self) -> None:
-        result = publish_summary()
+        original_summary_env = os.environ.get("GITHUB_STEP_SUMMARY")
+        try:
+            os.environ.pop("GITHUB_STEP_SUMMARY", None)
+            result = publish_summary()
+        finally:
+            if original_summary_env is None:
+                os.environ.pop("GITHUB_STEP_SUMMARY", None)
+            else:
+                os.environ["GITHUB_STEP_SUMMARY"] = original_summary_env
         self.assertFalse(result["published"])
 
     def test_watchdog_runs_against_current_state(self) -> None:
@@ -562,7 +570,15 @@ class OperatingCycleTests(unittest.TestCase):
         self.assertIn("Codex = 24h autonomous executive", report)
 
     def test_cloud_acceptance_runs_against_current_state(self) -> None:
-        status = run_acceptance()
+        original_summary_env = os.environ.get("GITHUB_STEP_SUMMARY")
+        try:
+            os.environ.pop("GITHUB_STEP_SUMMARY", None)
+            status = run_acceptance()
+        finally:
+            if original_summary_env is None:
+                os.environ.pop("GITHUB_STEP_SUMMARY", None)
+            else:
+                os.environ["GITHUB_STEP_SUMMARY"] = original_summary_env
         self.assertIn("report_path", status)
         self.assertIn("json_path", status)
 
