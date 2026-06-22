@@ -31,14 +31,14 @@ def missing_configuration(repository: str | None, token: str | None, token_sourc
         "stage": "configuration",
         "reason": "Set " + ", and ".join(missing) + ".",
         "missing": missing,
-        "next_command": ".\\run-cloud-test.cmd -CreateRepo",
+        "next_command": ".\\run-cloud-test.cmd -Upload",
         "interactive_command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\\setup-cloud-test.ps1",
         "manual_environment": [
             '$env:GITHUB_TOKEN = "your GitHub token"',
             '$env:GITHUB_REPOSITORY = "owner/repository"',
-            ".\\run-cloud-test.cmd -CreateRepo",
+            ".\\run-cloud-test.cmd -Upload",
         ],
-        "python_command": "python workflows\\cloud_run.py --create-repo --confirm-upload",
+        "python_command": "python workflows\\cloud_run.py --upload --confirm-upload",
         "token_source": token_source_name,
     }
 
@@ -75,6 +75,15 @@ def build_cloud_run(
 
     connection = build_connection_check(repository, token, token_source_name=token_source_name)
     result["connection"] = connection
+    if not connection.get("ok") and connection.get("stage") == "token":
+        result["ok"] = False
+        result["stage"] = "authentication_failed"
+        result["reason"] = (
+            "GitHub returned 401 Bad credentials. The token is invalid, expired, revoked, "
+            "or lacks access. Run with -PromptToken and paste a newly generated token."
+        )
+        return result
+
     if connection.get("ok") and trigger and not upload and not create_repo:
         acceptance = trigger_cloud_acceptance(repository=repository, token=token, ref=branch)
         result["acceptance"] = acceptance
@@ -128,6 +137,66 @@ def write_report(result: dict) -> None:
     REPORT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def nested_get(data: dict, *keys: str) -> object | None:
+    current: object = data
+    for key in keys:
+        if not isinstance(current, dict):
+            return None
+        current = current.get(key)
+    return current
+
+
+def render_summary(result: dict) -> str:
+    acceptance = result.get("acceptance")
+    if not isinstance(acceptance, dict):
+        acceptance = nested_get(result, "upload_and_acceptance", "acceptance")
+    if not isinstance(acceptance, dict):
+        acceptance = nested_get(result, "create_upload_and_acceptance", "upload_and_acceptance", "acceptance")
+    if not isinstance(acceptance, dict):
+        acceptance = {}
+
+    upload = result.get("upload_and_acceptance")
+    if not isinstance(upload, dict):
+        upload = nested_get(result, "create_upload_and_acceptance", "upload_and_acceptance")
+    upload_stats = upload.get("upload") if isinstance(upload, dict) else {}
+    if not isinstance(upload_stats, dict):
+        upload_stats = {}
+
+    lines = [
+        "Cloud test summary",
+        f"- ok: {bool(result.get('ok'))}",
+        f"- stage: {result.get('stage')}",
+        f"- repository: {result.get('repository', '')}",
+        f"- branch: {result.get('branch', '')}",
+        f"- report: {REPORT_RELATIVE}",
+    ]
+    if upload_stats:
+        lines.extend(
+            [
+                f"- files: {upload_stats.get('uploaded', 0)}/{upload_stats.get('file_count', 0)} uploaded",
+                f"- written: {upload_stats.get('written', 0)}",
+                f"- skipped: {upload_stats.get('skipped', 0)}",
+                f"- attempted: {upload_stats.get('attempted', upload_stats.get('file_count', 0))}",
+                f"- failed uploads: {len(upload_stats.get('failed') or [])}",
+            ]
+        )
+    if acceptance:
+        lines.extend(
+            [
+                f"- conclusion: {acceptance.get('conclusion')}",
+                f"- run_url: {acceptance.get('run_url')}",
+            ]
+        )
+    if not result.get("ok"):
+        reason = result.get("reason")
+        if not reason and isinstance(upload_stats, dict):
+            reason = upload_stats.get("reason")
+        if reason:
+            lines.append(f"- reason: {reason}")
+        lines.append("- next: check reports/cloud_run.json for full details")
+    return "\n".join(lines)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run the complete GitHub cloud test path.")
     parser.add_argument("--repository", default=configured_repository(os.getenv("GITHUB_REPOSITORY")), help="GitHub repository as owner/name.")
@@ -155,7 +224,7 @@ def main() -> None:
         token_source_name=source,
     )
     write_report(result)
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    print(render_summary(result))
     if not result.get("ok"):
         raise SystemExit(1 if result.get("stage") != "configuration" else 2)
 
