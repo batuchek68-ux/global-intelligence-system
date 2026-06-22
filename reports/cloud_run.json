@@ -1,6 +1,6 @@
 {
-  "ok": false,
-  "stage": "upload_or_acceptance_failed",
+  "ok": true,
+  "stage": "accepted",
   "repository": "batuchek68-ux/global-intelligence-system",
   "branch": "main",
   "token_source": "environment",
@@ -58,25 +58,25 @@
         "ok": true,
         "status": 200,
         "latest_run": {
-          "id": 27938310904,
+          "id": 27938975620,
           "name": "GitHub Cloud Acceptance",
-          "node_id": "WFR_kwLOS6IIDs8AAAAGgUDK-A",
+          "node_id": "WFR_kwLOS6IIDs8AAAAGgUrvhA",
           "head_branch": "main",
-          "head_sha": "de87ea506670342fa62277e792cdd4d49aeef454",
+          "head_sha": "8ad9133c40d7634e444007f7b6af87d04ccc6f7e",
           "path": ".github/workflows/cloud_acceptance.yml",
           "display_title": "GitHub Cloud Acceptance",
-          "run_number": 2,
+          "run_number": 3,
           "event": "workflow_dispatch",
           "status": "completed",
           "conclusion": "failure",
           "workflow_id": 299981379,
-          "check_suite_id": 75301202740,
-          "check_suite_node_id": "CS_kwDOS6IIDs8AAAARiE0rNA",
-          "url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938310904",
-          "html_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27938310904",
+          "check_suite_id": 75303126603,
+          "check_suite_node_id": "CS_kwDOS6IIDs8AAAARiGqGSw",
+          "url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938975620",
+          "html_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27938975620",
           "pull_requests": [],
-          "created_at": "2026-06-22T08:02:58Z",
-          "updated_at": "2026-06-22T08:03:11Z",
+          "created_at": "2026-06-22T08:15:16Z",
+          "updated_at": "2026-06-22T08:15:32Z",
           "actor": {
             "login": "batuchek68-ux",
             "id": 293273344,
@@ -100,7 +100,7 @@
           },
           "run_attempt": 1,
           "referenced_workflows": [],
-          "run_started_at": "2026-06-22T08:02:58Z",
+          "run_started_at": "2026-06-22T08:15:16Z",
           "triggering_actor": {
             "login": "batuchek68-ux",
             "id": 293273344,
@@ -122,19 +122,19 @@
             "user_view_type": "public",
             "site_admin": false
           },
-          "jobs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938310904/jobs",
-          "logs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938310904/logs",
-          "check_suite_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/check-suites/75301202740",
-          "artifacts_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938310904/artifacts",
-          "cancel_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938310904/cancel",
-          "rerun_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938310904/rerun",
+          "jobs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938975620/jobs",
+          "logs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938975620/logs",
+          "check_suite_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/check-suites/75303126603",
+          "artifacts_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938975620/artifacts",
+          "cancel_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938975620/cancel",
+          "rerun_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27938975620/rerun",
           "previous_attempt_url": null,
           "workflow_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/workflows/299981379",
           "head_commit": {
-            "id": "de87ea506670342fa62277e792cdd4d49aeef454",
-            "tree_id": "a068e1d72e2f34a54264945c2a702617d0b336ae",
-            "message": "Upload International Trade AI cloud headquarters: workflows/persist_state.py",
-            "timestamp": "2026-06-22T08:02:38Z",
+            "id": "8ad9133c40d7634e444007f7b6af87d04ccc6f7e",
+            "tree_id": "5bbb6b6d7fcf8cf922c2e55d10f00aff1913b2c7",
+            "message": "Upload International Trade AI cloud headquarters: workflows/trigger_cloud_acceptance.py",
+            "timestamp": "2026-06-22T08:15:04Z",
             "author": {
               "name": "batuchek68-ux",
               "email": "batuchek68@gmail.com"
@@ -286,8 +286,8 @@
     ]
   },
   "upload_and_acceptance": {
-    "ok": false,
-    "stage": "acceptance_failed",
+    "ok": true,
+    "stage": "accepted",
     "repository": "batuchek68-ux/global-intelligence-system",
     "branch": "main",
     "upload": {
@@ -296,8 +296,8 @@
       "reason": null,
       "file_count": 105,
       "uploaded": 105,
-      "skipped": 97,
-      "written": 8,
+      "skipped": 99,
+      "written": 6,
       "attempted": 105,
       "failed": [],
       "results": [
@@ -865,7 +865,7 @@
           "path": "reports/cloud_run.json",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -874,7 +874,7 @@
           "ok": true,
           "status": 200,
           "action": "updated",
-          "retried_with_sha": false,
+          "retried_with_sha": true,
           "details": null
         },
         {
@@ -1017,7 +1017,7 @@
           "path": "workflows/cloud_run.py",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -1144,16 +1144,16 @@
       ]
     },
     "acceptance": {
-      "ok": false,
+      "ok": true,
       "stage": "completed",
       "repository": "batuchek68-ux/global-intelligence-system",
       "workflow": "cloud_acceptance.yml",
-      "run_id": 27938975620,
-      "run_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27938975620",
+      "run_id": 27940521164,
+      "run_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27940521164",
       "status": "completed",
-      "conclusion": "failure",
+      "conclusion": "success",
       "ref": "main",
-      "created_at": "2026-06-22T08:15:16Z",
+      "created_at": "2026-06-22T08:44:12Z",
       "timed_out": false,
       "jobs": {
         "ok": true,
@@ -1162,19 +1162,11 @@
           {
             "name": "cloud-acceptance",
             "status": "completed",
-            "conclusion": "failure",
-            "html_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27938975620/job/82667443558"
+            "conclusion": "success",
+            "html_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27940521164/job/82672517842"
           }
         ],
-        "failed_steps": [
-          {
-            "job": "cloud-acceptance",
-            "step": "Run tests",
-            "number": 5,
-            "status": "completed",
-            "conclusion": "failure"
-          }
-        ],
+        "failed_steps": [],
         "details": null
       }
     }
