@@ -5,6 +5,7 @@ import json
 import os
 import subprocess
 import tempfile
+import urllib.error
 from pathlib import Path
 
 import core.decision as decision_module
@@ -390,6 +391,18 @@ class OperatingCycleTests(unittest.TestCase):
             trigger_module.github_request = original_request
         self.assertTrue(result["ok"])
         self.assertEqual(result["failed_steps"][0]["step"], "Persist acceptance evidence")
+
+    def test_trigger_cloud_acceptance_reports_network_error(self) -> None:
+        original_urlopen = trigger_module.urllib.request.urlopen
+        trigger_module.urllib.request.urlopen = lambda *args, **kwargs: (_ for _ in ()).throw(
+            urllib.error.URLError("[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred")
+        )
+        try:
+            status, data = trigger_module.github_request("GET", "owner/repo", "/actions/runs/1", "token")
+        finally:
+            trigger_module.urllib.request.urlopen = original_urlopen
+        self.assertEqual(status, 0)
+        self.assertEqual(data["stage"], "network_error")
 
     def test_upload_and_trigger_requires_confirmation(self) -> None:
         result = upload_and_trigger("owner/repo", "token", confirm_upload=False)
