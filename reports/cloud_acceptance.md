@@ -1,8 +1,8 @@
 # GitHub Cloud Acceptance
 
 - Status: PASS
-- Generated: 2026-06-22T07:58:27.327698+00:00
-- Repository: local
+- Generated: 2026-06-22T08:10:37.741438+00:00
+- Repository: batuchek68-ux/global-intelligence-system
 - Run id: local
 
 ## Command Model
