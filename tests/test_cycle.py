@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import unittest
 import json
+import os
+import subprocess
 import tempfile
 from pathlib import Path
 
@@ -21,6 +23,7 @@ from workflows.cloud_config import configured_repository, configured_token_info,
 from workflows.cloud_run import build_cloud_run
 from workflows.cloud_test_status import build_status as build_cloud_test_status, render_status as render_cloud_test_status
 from workflows.persist_state import STATE_PATHS
+import workflows.persist_state as persist_state_module
 from workflows.ensure_labels import LABELS, ensure_labels
 from workflows.prepare_release import ROOT as RELEASE_ROOT, collect_files
 from workflows.publish_summary import publish_summary
@@ -204,6 +207,27 @@ class OperatingCycleTests(unittest.TestCase):
         self.assertIn("memory", STATE_PATHS)
         self.assertIn("reports", STATE_PATHS)
         self.assertIn("comm/outbox", STATE_PATHS)
+
+    def test_persist_state_pushes_to_github_ref_name(self) -> None:
+        original_env = os.environ.get("GITHUB_REF_NAME")
+        original_run = persist_state_module.run
+        captured = {}
+
+        def fake_run(command):
+            captured["command"] = command
+            return subprocess.CompletedProcess(command, 0, "", "")
+
+        try:
+            persist_state_module.run = fake_run
+            os.environ["GITHUB_REF_NAME"] = "main"
+            persist_state_module.push_state("main")
+        finally:
+            persist_state_module.run = original_run
+            if original_env is None:
+                os.environ.pop("GITHUB_REF_NAME", None)
+            else:
+                os.environ["GITHUB_REF_NAME"] = original_env
+        self.assertEqual(captured["command"], ["git", "push", "origin", "HEAD:main"])
 
     def test_label_set_includes_owner_queue(self) -> None:
         self.assertIn("major-matter", LABELS)
