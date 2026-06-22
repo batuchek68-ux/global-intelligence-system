@@ -8,12 +8,12 @@
   "root_commands": [
     ".\\check-cloud-config-from-root.cmd",
     ".\\setup-cloud-test-from-root.cmd",
-    ".\\run-cloud-test-from-root.cmd -CreateRepo"
+    ".\\run-cloud-test-from-root.cmd -Upload"
   ],
   "source_commands": [
     ".\\check-cloud-config.cmd",
     ".\\setup-cloud-test.ps1",
-    ".\\run-cloud-test.cmd -CreateRepo"
+    ".\\run-cloud-test.cmd -Upload"
   ],
   "token_storage": "Token is read from environment or prompt only; do not save it to files.",
   "token_source": "missing",
