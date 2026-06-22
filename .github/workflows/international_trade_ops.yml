@@ -1,0 +1,52 @@
+name: International Trade AI Ops
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Research topic or project focus"
+        required: false
+        default: "international engineering trade policy logistics compliance risk"
+  schedule:
+    - cron: "20 1 * * *"
+
+permissions:
+  contents: write
+  actions: read
+  issues: write
+
+jobs:
+  daily-ops:
+    runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      BING_SEARCH_KEY: ${{ secrets.BING_SEARCH_KEY }}
+      WECHAT_WEBHOOK_URL: ${{ secrets.WECHAT_WEBHOOK_URL }}
+      OPS_TOPIC: ${{ github.event.inputs.topic }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Preflight check
+        run: python workflows/preflight_check.py
+      - name: Ensure GitHub labels
+        run: python workflows/ensure_labels.py
+      - name: Run tests
+        run: python -m unittest discover -s tests
+      - name: Run daily operating cycle
+        run: python workflows/daily_job.py
+      - name: Publish headquarters summary
+        run: python workflows/publish_summary.py
+      - name: Persist operating state
+        run: python workflows/persist_state.py
+      - name: Upload operating artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: international-trade-ai-${{ github.run_id }}
+          path: |
+            memory/
+            research/briefs/
+            media/drafts/
+            comm/outbox/
+            reports/
