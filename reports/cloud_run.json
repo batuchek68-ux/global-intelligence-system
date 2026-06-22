@@ -58,25 +58,25 @@
         "ok": true,
         "status": 200,
         "latest_run": {
-          "id": 27919721165,
-          "name": "Global Intelligence v3",
-          "node_id": "WFR_kwLOS6IIDs8AAAAGgCUizQ",
+          "id": 27937862686,
+          "name": "GitHub Cloud Acceptance",
+          "node_id": "WFR_kwLOS6IIDs8AAAAGgTn0Hg",
           "head_branch": "main",
-          "head_sha": "9a618ec4bd0d9e9ea40a67830c17068f57c923e2",
-          "path": ".github/workflows/global-intelligence-v3.yml",
-          "display_title": "Global Intelligence v3",
-          "run_number": 19,
-          "event": "schedule",
+          "head_sha": "a5d2a2fd0e9be3528301dd43415d42b925f0d1fc",
+          "path": ".github/workflows/cloud_acceptance.yml",
+          "display_title": "GitHub Cloud Acceptance",
+          "run_number": 1,
+          "event": "workflow_dispatch",
           "status": "completed",
           "conclusion": "failure",
-          "workflow_id": 296029123,
-          "check_suite_id": 75250341574,
-          "check_suite_node_id": "CS_kwDOS6IIDs8AAAARhUUWxg",
-          "url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165",
-          "html_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27919721165",
+          "workflow_id": 299981379,
+          "check_suite_id": 75299866023,
+          "check_suite_node_id": "CS_kwDOS6IIDs8AAAARiDjFpw",
+          "url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27937862686",
+          "html_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27937862686",
           "pull_requests": [],
-          "created_at": "2026-06-21T22:38:08Z",
-          "updated_at": "2026-06-21T22:38:23Z",
+          "created_at": "2026-06-22T07:53:55Z",
+          "updated_at": "2026-06-22T07:54:09Z",
           "actor": {
             "login": "batuchek68-ux",
             "id": 293273344,
@@ -100,7 +100,7 @@
           },
           "run_attempt": 1,
           "referenced_workflows": [],
-          "run_started_at": "2026-06-21T22:38:08Z",
+          "run_started_at": "2026-06-22T07:53:55Z",
           "triggering_actor": {
             "login": "batuchek68-ux",
             "id": 293273344,
@@ -122,26 +122,26 @@
             "user_view_type": "public",
             "site_admin": false
           },
-          "jobs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/jobs",
-          "logs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/logs",
-          "check_suite_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/check-suites/75250341574",
-          "artifacts_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/artifacts",
-          "cancel_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/cancel",
-          "rerun_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27919721165/rerun",
+          "jobs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27937862686/jobs",
+          "logs_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27937862686/logs",
+          "check_suite_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/check-suites/75299866023",
+          "artifacts_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27937862686/artifacts",
+          "cancel_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27937862686/cancel",
+          "rerun_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/runs/27937862686/rerun",
           "previous_attempt_url": null,
-          "workflow_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/workflows/296029123",
+          "workflow_url": "https://api.github.com/repos/batuchek68-ux/global-intelligence-system/actions/workflows/299981379",
           "head_commit": {
-            "id": "9a618ec4bd0d9e9ea40a67830c17068f57c923e2",
-            "tree_id": "5a6015e2086d4733ffd07c54341f2cc3d8c8fea6",
-            "message": "update intelligence",
-            "timestamp": "2026-06-21T17:12:09Z",
+            "id": "a5d2a2fd0e9be3528301dd43415d42b925f0d1fc",
+            "tree_id": "b7fac918ebb920685914c13aa1b921bcc3062870",
+            "message": "Upload International Trade AI cloud headquarters: workflows/upload_and_trigger_cloud.py",
+            "timestamp": "2026-06-22T07:53:44Z",
             "author": {
-              "name": "github-actions",
-              "email": "github-actions@github.com"
+              "name": "batuchek68-ux",
+              "email": "batuchek68@gmail.com"
             },
             "committer": {
-              "name": "github-actions",
-              "email": "github-actions@github.com"
+              "name": "batuchek68-ux",
+              "email": "batuchek68@gmail.com"
             }
           },
           "repository": {
@@ -296,8 +296,8 @@
       "reason": null,
       "file_count": 105,
       "uploaded": 105,
-      "skipped": 88,
-      "written": 17,
+      "skipped": 87,
+      "written": 18,
       "attempted": 105,
       "failed": [],
       "results": [
@@ -529,7 +529,7 @@
           "path": "docs/cloud-run.md",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -617,7 +617,7 @@
           "path": "memory/cases/demo-port-logistics-modernization.json",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -625,7 +625,7 @@
           "path": "memory/cases/internal-brief-library-cleanup.json",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -737,7 +737,7 @@
           "path": "memory/execution_logs/demo-port-logistics-modernization.json",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -745,7 +745,7 @@
           "path": "memory/execution_logs/internal-brief-library-cleanup.json",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -753,7 +753,7 @@
           "path": "memory/last_run.json",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -769,7 +769,7 @@
           "path": "memory/operator_logs/demo-port-logistics-modernization.md",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -777,7 +777,7 @@
           "path": "memory/operator_logs/internal-brief-library-cleanup.md",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -881,7 +881,7 @@
           "path": "reports/cloud_test_status.md",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -889,7 +889,7 @@
           "path": "reports/headquarters_status.md",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -897,7 +897,7 @@
           "path": "reports/owner_inbox.md",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -913,7 +913,7 @@
           "path": "requirements.txt",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -929,7 +929,7 @@
           "path": "research/briefs/demo-port-logistics-modernization.md",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -937,7 +937,7 @@
           "path": "research/briefs/internal-brief-library-cleanup.md",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -953,7 +953,7 @@
           "path": "run-cloud-test.ps1",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -961,7 +961,7 @@
           "path": "setup-cloud-test.ps1",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -1009,7 +1009,7 @@
           "path": "workflows/cloud_connection_check.py",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -1017,7 +1017,7 @@
           "path": "workflows/cloud_run.py",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -1025,7 +1025,7 @@
           "path": "workflows/cloud_test_status.py",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -1065,7 +1065,7 @@
           "path": "workflows/persist_state.py",
           "ok": true,
           "status": 200,
-          "action": "skipped",
+          "action": "updated",
           "retried_with_sha": false,
           "details": null
         },
@@ -1073,7 +1073,7 @@
           "path": "workflows/preflight_check.py",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -1081,7 +1081,7 @@
           "path": "workflows/prepare_release.py",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -1113,7 +1113,7 @@
           "path": "workflows/upload_and_trigger_cloud.py",
           "ok": true,
           "status": 200,
-          "action": "updated",
+          "action": "skipped",
           "retried_with_sha": false,
           "details": null
         },
@@ -1148,12 +1148,12 @@
       "stage": "completed",
       "repository": "batuchek68-ux/global-intelligence-system",
       "workflow": "cloud_acceptance.yml",
-      "run_id": 27937862686,
-      "run_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27937862686",
+      "run_id": 27938310904,
+      "run_url": "https://github.com/batuchek68-ux/global-intelligence-system/actions/runs/27938310904",
       "status": "completed",
       "conclusion": "failure",
       "ref": "main",
-      "created_at": "2026-06-22T07:53:55Z",
+      "created_at": "2026-06-22T08:02:58Z",
       "timed_out": false
     }
   }
