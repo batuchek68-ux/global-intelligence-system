@@ -5,7 +5,8 @@ param(
     [switch]$CreateRepo,
     [switch]$Upload,
     [switch]$Public,
-    [switch]$NoTrigger
+    [switch]$NoTrigger,
+    [switch]$PromptToken
 )
 
 $ErrorActionPreference = "Stop"
@@ -35,7 +36,11 @@ function Test-RepositoryName {
     return $Owner -match '^[A-Za-z0-9]([A-Za-z0-9-]{0,38}[A-Za-z0-9])?$' -and $Name -match '^[A-Za-z0-9._-]+$'
 }
 
-if (-not $Token -and $env:GH_TOKEN) {
+if ($PromptToken) {
+    $Token = $null
+}
+
+if (-not $Token -and -not $PromptToken -and $env:GH_TOKEN) {
     $Token = $env:GH_TOKEN
 }
 
@@ -50,18 +55,37 @@ if (-not $Repository) {
     }
 }
 
-if (-not $Token -or -not $Repository) {
+if (-not $Token) {
+    Write-Host "GitHub token is required for cloud upload and Actions dispatch." -ForegroundColor Cyan
+    Write-Host "Paste the token at the prompt. It will not be saved to disk."
+    $SecureToken = Read-Host "GitHub token" -AsSecureString
+    $TokenPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($SecureToken)
+    try {
+        $Token = [Runtime.InteropServices.Marshal]::PtrToStringAuto($TokenPointer)
+    } finally {
+        if ($TokenPointer -ne [IntPtr]::Zero) {
+            [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($TokenPointer)
+        }
+    }
+}
+
+if (-not $Repository) {
     Write-Host "Missing GitHub cloud test configuration." -ForegroundColor Yellow
-    Write-Host "Set GITHUB_TOKEN or GH_TOKEN, and GITHUB_REPOSITORY as owner/repository."
+    Write-Host "Set GITHUB_REPOSITORY as owner/repository, or save it in cloud.local.json."
     Write-Host ""
     Write-Host "Example:"
-    Write-Host '$env:GITHUB_TOKEN = "your GitHub token"'
     Write-Host '$env:GITHUB_REPOSITORY = "owner/repository"'
     Write-Host 'Or copy cloud.local.example.json to cloud.local.json and set repository there.'
-    Write-Host '.\run-cloud-test.ps1 -CreateRepo'
+    Write-Host '.\run-cloud-test.ps1 -Upload'
     python workflows\cloud_run.py
     python workflows\cloud_test_status.py
     exit $LASTEXITCODE
+}
+
+if (-not $Token) {
+    Write-Host "GitHub token is required." -ForegroundColor Yellow
+    python workflows\cloud_test_status.py
+    exit 2
 }
 
 if (-not (Test-RepositoryName $Repository)) {
