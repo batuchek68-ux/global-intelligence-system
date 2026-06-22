@@ -350,6 +350,50 @@ class OperatingCycleTests(unittest.TestCase):
         self.assertIn(".github/workflows/cloud_acceptance.yml", files)
         self.assertIn("workflows/upload_and_trigger_cloud.py", files)
 
+    def test_upload_stops_on_bad_credentials(self) -> None:
+        import workflows.upload_and_trigger_cloud as upload_module
+
+        original_uploadable_files = upload_module.uploadable_files
+        original_upload_file = upload_module.upload_file
+        upload_module.uploadable_files = lambda: [RELEASE_ROOT / "README.md", RELEASE_ROOT / "requirements.txt"]
+        upload_module.upload_file = lambda repository, token, path, branch, message_prefix: {
+            "path": path.name,
+            "ok": False,
+            "status": 401,
+            "action": "created",
+            "details": {"message": "Bad credentials"},
+        }
+        try:
+            result = upload_module.upload_repository("owner/repo", "token", "main", "test")
+        finally:
+            upload_module.uploadable_files = original_uploadable_files
+            upload_module.upload_file = original_upload_file
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["stage"], "authentication_failed")
+        self.assertEqual(result["attempted"], 1)
+
+    def test_upload_skips_identical_remote_file(self) -> None:
+        import workflows.upload_and_trigger_cloud as upload_module
+
+        original_get_existing_file = upload_module.get_existing_file
+        original_github_contents_request = upload_module.github_contents_request
+        content = (RELEASE_ROOT / "README.md").read_bytes()
+        upload_module.get_existing_file = lambda repository, token, relative, branch: {
+            "sha": upload_module.git_blob_sha(content)
+        }
+
+        def fail_if_put(*args, **kwargs):
+            raise AssertionError("Identical files should not be uploaded.")
+
+        upload_module.github_contents_request = fail_if_put
+        try:
+            result = upload_module.upload_file("owner/repo", "token", RELEASE_ROOT / "README.md", "main", "test")
+        finally:
+            upload_module.get_existing_file = original_get_existing_file
+            upload_module.github_contents_request = original_github_contents_request
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["action"], "skipped")
+
     def test_create_upload_and_trigger_requires_owner_repo(self) -> None:
         result = create_upload_and_trigger("repo-without-owner", "token")
         self.assertFalse(result["ok"])
