@@ -1,5 +1,6 @@
 param(
     [string]$Repository,
+    [switch]$CreateRepo,
     [switch]$Public,
     [switch]$NoTrigger,
     [switch]$SaveRepository
@@ -100,7 +101,12 @@ if (-not $Repository -or -not $Token) {
     exit $LASTEXITCODE
 }
 
-$argsList = @("-Repository", $Repository, "-Token", $Token, "-CreateRepo")
+$argsList = @("-Repository", $Repository, "-Token", $Token)
+if ($CreateRepo) {
+    $argsList += "-CreateRepo"
+} else {
+    $argsList += "-Upload"
+}
 if ($Public) {
     $argsList += "-Public"
 }
