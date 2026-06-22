@@ -1,3 +1,2 @@
-requests
-openai
-feedparser
+# This project intentionally uses only the Python standard library for the
+# first GitHub-runnable version.
