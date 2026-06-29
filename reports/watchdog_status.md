@@ -1,9 +1,9 @@
 # 24h Codex Watchdog
 
-- Status: ATTENTION
-- Reason: attention required
-- Last run: 2026-06-28T10:32:57+00:00
-- Last run age hours: 28.37
+- Status: OK
+- Reason: healthy
+- Last run: 2026-06-29T14:55:00+00:00
+- Last run age hours: 7.38
 - Max allowed age hours: 26
 - Waiting for owner: 0
 - Projects: 2
