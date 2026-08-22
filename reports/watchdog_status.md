@@ -3,7 +3,7 @@
 - Status: OK
 - Reason: healthy
 - Last run: 2026-08-22T02:29:02+00:00
-- Last run age hours: 3.96
+- Last run age hours: 9.9
 - Max allowed age hours: 26
 - Waiting for owner: 0
 - Projects: 2
