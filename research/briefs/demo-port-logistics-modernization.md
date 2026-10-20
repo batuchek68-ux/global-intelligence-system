@@ -1,6 +1,6 @@
 # Daily Intelligence Brief: Demo Port Logistics Modernization
 
-Generated: 2026-10-19T06:16:47+00:00
+Generated: 2026-10-20T06:05:52+00:00
 
 ## Focus
 
