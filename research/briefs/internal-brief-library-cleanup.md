@@ -1,10 +1,10 @@
 # Daily Intelligence Brief: Internal Brief Library Cleanup
 
-Generated: 2026-11-21T08:19:31+00:00
+Generated: 2026-11-22T06:13:28+00:00
 
 ## Focus
 
-international engineering trade compliance risk
+international engineering trade policy logistics compliance risk
 
 ## Project
 
@@ -23,8 +23,8 @@ international engineering trade compliance risk
 
 ## Research Leads
 
-- Bing lead: https://www.bing.com/search?q=international%20engineering%20trade%20compliance%20risk%20Internal
-- Scholar lead: https://scholar.google.com/scholar?q=international%20engineering%20trade%20compliance%20risk%20Internal
+- Bing lead: https://www.bing.com/search?q=international%20engineering%20trade%20policy%20logistics%20compliance%20risk%20Internal
+- Scholar lead: https://scholar.google.com/scholar?q=international%20engineering%20trade%20policy%20logistics%20compliance%20risk%20Internal
 
 ## Operator Notes
 
