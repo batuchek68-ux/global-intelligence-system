@@ -30,8 +30,11 @@ jobs:
       - name: Fetch news
         run: python src/fetch_news.py
 
+      - name: Preprocess
+        run: python src/preprocess.py
+
       - name: Analyze trends
-        run: python src/analyze.py
+        run: python src/trend_analyzer.py
 
       - name: Commit results
         run: |

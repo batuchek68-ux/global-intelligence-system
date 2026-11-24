@@ -1,2 +1,2 @@
-# This project intentionally uses only the Python standard library for the
-# first GitHub-runnable version.
+# RSS fetching requires feedparser; the rest of the pipeline is stdlib-only.
+feedparser>=6.0

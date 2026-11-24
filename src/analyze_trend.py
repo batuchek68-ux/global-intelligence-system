@@ -2,7 +2,7 @@ import json
 from collections import Counter
 import re
 
-with open("data/cleaned_news.json","r",encoding="utf-8") as f:
+with open("data/clean_news.json","r",encoding="utf-8") as f:
     news=json.load(f)
 
 words=[]
