@@ -1,8 +1,7 @@
 name: Global Intelligence v4
 
 on:
-  schedule:
-    - cron: "0 */6 * * *"
+  # schedule retired 2026-11-24: v12 event_orchestrator is the single timer
   workflow_dispatch:
 
 concurrency:
