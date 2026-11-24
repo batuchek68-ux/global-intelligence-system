@@ -5,6 +5,10 @@ on:
     - cron: "0 */6 * * *"
   workflow_dispatch:
 
+concurrency:
+  group: intelligence-data
+  cancel-in-progress: false
+
 permissions:
   contents: write   # ⭐⭐⭐ 关键修复
 
@@ -40,4 +44,5 @@ jobs:
           git config user.email github-actions@github.com
           git add data/
           git commit -m "update intelligence" || echo "no changes"
+          git pull --rebase origin main || true
           git push

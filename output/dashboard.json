@@ -1,5 +1,247 @@
 {
-  "keywords": [],
-  "topics": [],
-  "updated_at": "2026-06-14T17:09:59.455127"
+  "updated_at": "2026-11-24T05:10:36.107270+00:00",
+  "top_keywords": [
+    [
+      "The",
+      16
+    ],
+    [
+      "News",
+      7
+    ],
+    [
+      "and",
+      5
+    ],
+    [
+      "the",
+      4
+    ],
+    [
+      "Russian",
+      4
+    ],
+    [
+      "for",
+      4
+    ],
+    [
+      "Trump",
+      3
+    ],
+    [
+      "NBC",
+      3
+    ],
+    [
+      "BBC",
+      3
+    ],
+    [
+      "New",
+      3
+    ],
+    [
+      "York",
+      3
+    ],
+    [
+      "First",
+      3
+    ],
+    [
+      "measles",
+      3
+    ],
+    [
+      "Rep",
+      2
+    ],
+    [
+      "related",
+      2
+    ],
+    [
+      "after",
+      2
+    ],
+    [
+      "CBS",
+      2
+    ],
+    [
+      "hit",
+      2
+    ],
+    [
+      "Thanksgiving",
+      2
+    ],
+    [
+      "Times",
+      2
+    ],
+    [
+      "death",
+      2
+    ],
+    [
+      "Hill",
+      2
+    ],
+    [
+      "state",
+      2
+    ],
+    [
+      "Jensen",
+      2
+    ],
+    [
+      "Huang",
+      2
+    ],
+    [
+      "Nvidia",
+      2
+    ],
+    [
+      "from",
+      2
+    ],
+    [
+      "Guardian",
+      2
+    ],
+    [
+      "Google",
+      2
+    ],
+    [
+      "Blade",
+      2
+    ]
+  ],
+  "top_news": [
+    {
+      "title": "Trump told the Army to pause the detonation of 9,500 pounds of lead azide in Iowa. Here's what to know - PBS",
+      "summary": "Trump told the Army to pause the detonation of 9,500 pounds of lead azide in Iowa. Here's what to know - PBS",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Rep. Jimmy Gomez to resign following sexual misconduct findings - The Washington Post",
+      "summary": "Rep. Jimmy Gomez to resign following sexual misconduct findings - The Washington Post",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Judge unseals documents related to search of Rep. Ilhan Omar\u2019s home - NBC News",
+      "summary": "Judge unseals documents related to search of Rep. Ilhan Omar\u2019s home - NBC News",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Nato chief vows defence against space threat after Russian nuclear satellite reports - BBC",
+      "summary": "Nato chief vows defence against space threat after Russian nuclear satellite reports - BBC",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Ukraine sinks Russian warship Merkury off Libya, damages sanctioned Russian cargo ship - CBS News",
+      "summary": "Ukraine sinks Russian warship Merkury off Libya, damages sanctioned Russian cargo ship - CBS News",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Federal appeals court gives President Donald Trump a path to erasing hush money conviction - AP News",
+      "summary": "Federal appeals court gives President Donald Trump a path to erasing hush money conviction - AP News",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Husband of woman detained in viral ICE arrest at Seattle airport calls episode \"unjust\" - CBS News",
+      "summary": "Husband of woman detained in viral ICE arrest at Seattle airport calls episode \"unjust\" - CBS News",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Rough weather expected to hit both coasts, may disrupt Thanksgiving travel - NBC News",
+      "summary": "Rough weather expected to hit both coasts, may disrupt Thanksgiving travel - NBC News",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Rain Storms Overwhelm San Francisco\u2019s Sewers, Sending Wastewater Into the Streets - The New York Times",
+      "summary": "Rain Storms Overwhelm San Francisco\u2019s Sewers, Sending Wastewater Into the Streets - The New York Times",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Trump: DOJ working to overturn Newsom\u2019s death row commutations - The Hill",
+      "summary": "Trump: DOJ working to overturn Newsom\u2019s death row commutations - The Hill",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Poland to get NATO early-warning aircraft after Russian missiles hit country - NBC News",
+      "summary": "Poland to get NATO early-warning aircraft after Russian missiles hit country - NBC News",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "My approach to EU is pragmatic, says Burnham - BBC",
+      "summary": "My approach to EU is pragmatic, says Burnham - BBC",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "What failure of COP31 reveals about a divided world - BBC",
+      "summary": "What failure of COP31 reveals about a divided world - BBC",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Australia's Pauline Hanson faces biggest test as debt and anger align in state vote - Reuters",
+      "summary": "Australia's Pauline Hanson faces biggest test as debt and anger align in state vote - Reuters",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "The Frantic White House Push to Get Jensen Huang Back - WSJ",
+      "summary": "The Frantic White House Push to Get Jensen Huang Back - WSJ",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Stock futures inch higher as traders see whether Nvidia can extend rally from Jensen Huang\u2019s return: Live updates - CNBC",
+      "summary": "Stock futures inch higher as traders see whether Nvidia can extend rally from Jensen Huang\u2019s return: Live updates - CNBC",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "US adds Megaspeed, AI firm at center of Nvidia scandal, to trade blacklist - The Guardian",
+      "summary": "US adds Megaspeed, AI firm at center of Nvidia scandal, to trade blacklist - The Guardian",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "After judge signals \u2018steep hill\u2019 in regulatory case, Kalshi pauses operations in Utah - The Salt Lake Tribune",
+      "summary": "After judge signals \u2018steep hill\u2019 in regulatory case, Kalshi pauses operations in Utah - The Salt Lake Tribune",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Google alternative Kagi launches an email service - The Verge",
+      "summary": "Google alternative Kagi launches an email service - The Verge",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "AI Mode adding Google Drive, Wallet, & Gemini app integration - 9to5Google",
+      "summary": "AI Mode adding Google Drive, Wallet, & Gemini app integration - 9to5Google",
+      "source": "unknown",
+      "time": ""
+    }
+  ]
 }

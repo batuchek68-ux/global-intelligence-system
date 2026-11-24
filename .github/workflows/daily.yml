@@ -6,6 +6,10 @@ on:
 
   workflow_dispatch:
 
+concurrency:
+  group: intelligence-data
+  cancel-in-progress: false
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -45,4 +49,5 @@ jobs:
 
           git commit -m "auto daily report" || echo "no changes"
 
+          git pull --rebase origin main || true
           git push

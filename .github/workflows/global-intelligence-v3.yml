@@ -6,6 +6,10 @@ on:
 
   workflow_dispatch:
 
+concurrency:
+  group: intelligence-data
+  cancel-in-progress: false
+
 jobs:
 
   run:
@@ -51,4 +55,5 @@ jobs:
 
           git commit -m "auto intelligence update" || echo "no changes"
 
+          git pull --rebase origin main || true
           git push
