@@ -45,9 +45,8 @@ jobs:
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
 
+          git fetch origin main
+          git reset --soft origin/main
           git add data/*.json output/*.json
-
           git commit -m "auto daily report" || echo "no changes"
-
-          git pull --rebase origin main || true
-          git push
+          git push origin main
