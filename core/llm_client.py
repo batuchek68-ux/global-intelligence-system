@@ -17,10 +17,11 @@ class LLMClient:
     
     def __init__(
         self,
-        base_url: str = "http://localhost:8080/v1",
-        api_key: str = "free",
-        model: str = "llama-2-70b-chat",
+        base_url: str | None = None,
+        api_key: str | None = None,
+        model: str | None = None,
         timeout: int = 30,
+        verify_on_init: bool = False,
     ):
         """
         Initialize LLM client
@@ -31,18 +32,28 @@ class LLMClient:
             model: Model name to use (will verify on init)
             timeout: Request timeout in seconds
         """
-        self.base_url = base_url or os.getenv("FREELLMAPI_BASE_URL", "http://localhost:8080/v1")
-        self.api_key = api_key or os.getenv("FREELLMAPI_KEY", "free")
-        self.model = model or os.getenv("FREELLMAPI_MODEL", "llama-2-70b-chat")
+        self.base_url = (base_url or os.getenv("FREELLMAPI_BASE_URL") or "http://127.0.0.1:31415/v1").rstrip("/")
+        self.api_key = api_key if api_key is not None else (os.getenv("FREELLMAPI_KEY") or "")
+        self.model = model or os.getenv("FREELLMAPI_MODEL") or "auto"
         self.timeout = timeout
         self.headers = {
-            "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
         }
-        
-        # Verify connection on init
-        self._verify_connection()
-    
+        if self.api_key:
+            self.headers["Authorization"] = f"Bearer {self.api_key}"
+
+        # Verification is opt-in: CI may not have a local LLM service.
+        if verify_on_init:
+            self._verify_connection()
+
+    def is_available(self) -> bool:
+        """Return True when the configured LLM endpoint responds."""
+        try:
+            resp = requests.get(f"{self.base_url}/models", headers=self.headers, timeout=5)
+            return resp.status_code == 200
+        except Exception:
+            return False
+
     def _verify_connection(self) -> None:
         """Verify that freellmapi is running and accessible"""
         try:

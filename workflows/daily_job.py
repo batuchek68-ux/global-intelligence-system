@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -28,10 +29,11 @@ def run_daily_cycle(projects: list | None = None) -> dict:
 
     for project in projects:
         slug = safe_slug(project.title)
-        judgment = judge_project(project)
+        use_llm = os.getenv("OPS_USE_LLM", "0") == "1"
+        judgment = judge_project(project, use_llm=use_llm)
         actions = plan_actions(project, judgment)
 
-        brief = build_research_brief(project, judgment)
+        brief = build_research_brief(project, judgment, use_llm=use_llm)
         video = build_video_script(project, judgment)
         brief_path = write_text(ROOT / "research" / "briefs" / f"{slug}.md", brief)
         video_path = write_text(ROOT / "media" / "drafts" / f"{slug}.md", video)

@@ -6,13 +6,13 @@ from urllib.parse import quote
 from core.models import Project, RiskJudgment, now_iso
 
 
-def build_research_brief(project: Project, judgment: RiskJudgment, topic: str | None = None) -> str:
+def build_research_brief(project: Project, judgment: RiskJudgment, topic: str | None = None, use_llm: bool = False) -> str:
     focus = topic or os.getenv("OPS_TOPIC") or "international engineering trade compliance risk"
     search_links = [
         f"https://www.bing.com/search?q={quote(focus + ' ' + project.country)}",
         f"https://scholar.google.com/scholar?q={quote(focus + ' ' + project.country)}",
     ]
-    return f"""# Daily Intelligence Brief: {project.title}
+    brief = f"""# Daily Intelligence Brief: {project.title}
 
 Generated: {now_iso()}
 
@@ -46,3 +46,7 @@ Generated: {now_iso()}
 2. Check counterparty reliability and contract exposure before commitments.
 3. Keep video/public content in draft mode until human approval.
 """
+    if use_llm:
+        from core.intelligence import enhance_brief
+        brief, _ = enhance_brief(project, judgment, brief)
+    return brief

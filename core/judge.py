@@ -27,7 +27,7 @@ HIGH_RISK_KEYWORDS = [
 ]
 
 
-def judge_project(project: Project, approval_amount: float = 100000.0) -> RiskJudgment:
+def judge_project(project: Project, approval_amount: float = 100000.0, use_llm: bool = False) -> RiskJudgment:
     text = " ".join(
         [
             project.title,
@@ -69,10 +69,14 @@ def judge_project(project: Project, approval_amount: float = 100000.0) -> RiskJu
     else:
         recommendation = "Proceed with a small reversible next step and keep the learning record updated."
 
-    return RiskJudgment(
+    rule_result = RiskJudgment(
         level=level,
         score=score,
         triggers=triggers,
         recommendation=recommendation,
         needs_approval=needs_approval,
     )
+    if use_llm:
+        from core.intelligence import enhance_judgment
+        rule_result, _ = enhance_judgment(project, rule_result)
+    return rule_result

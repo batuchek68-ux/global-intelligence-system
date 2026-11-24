@@ -13,7 +13,7 @@
 ## 本地运行
 
 ```powershell
-cd C:\Users\Surface\Documents\智慧情报分析平台\02_源代码\international-trade-ai
+cd F:\Documents\GitHub\global-intelligence-system
 python workflows\preflight_check.py
 python workflows\daily_job.py
 ```
@@ -52,6 +52,19 @@ python workflows\prepare_release.py
 - `dist/release_manifest.json`
 
 没有任何密钥时，系统仍会在离线模式跑完整流程，生成可审阅的草稿、请示和运行记录。
+
+## LLM 增强（可选）
+
+默认走确定性规则，保证 CI 可重复。设置以下环境变量后，风险判断、情报简报和摘要会调用 LLM，失败时自动回退到规则：
+
+```powershell
+$env:OPS_USE_LLM = "1"
+$env:FREELLMAPI_BASE_URL = "http://127.0.0.1:31415/v1"
+$env:FREELLMAPI_KEY = "你的本地网关密钥"
+$env:FREELLMAPI_MODEL = "auto"
+```
+
+产物中的 `generated_by` 字段标明内容来自 `llm`、`llm+rules` 还是 `rules`，便于评估质量与成本。
 
 GitHub Actions 每次运行前会执行：
 
