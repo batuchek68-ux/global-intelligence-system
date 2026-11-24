@@ -1,36 +1,32 @@
 {
-  "updated_at": "2026-11-24T05:22:14.052776+00:00",
+  "updated_at": "2026-11-24T08:52:06.419404+00:00",
   "top_keywords": [
     [
       "The",
       12
     ],
     [
-      "News",
-      8
-    ],
-    [
       "the",
-      5
-    ],
-    [
-      "and",
-      5
-    ],
-    [
-      "Trump",
-      4
+      7
     ],
     [
       "for",
+      6
+    ],
+    [
+      "Huang",
       4
     ],
     [
-      "after",
-      4
+      "Guardian",
+      3
     ],
     [
-      "Russian",
+      "Bay",
+      3
+    ],
+    [
+      "Area",
       3
     ],
     [
@@ -38,7 +34,15 @@
       3
     ],
     [
-      "Thanksgiving",
+      "Jensen",
+      3
+    ],
+    [
+      "Nvidia",
+      3
+    ],
+    [
+      "CNN",
       3
     ],
     [
@@ -46,11 +50,7 @@
       3
     ],
     [
-      "with",
-      3
-    ],
-    [
-      "First",
+      "Google",
       3
     ],
     [
@@ -58,11 +58,35 @@
       3
     ],
     [
-      "Washington",
+      "Trump",
       2
     ],
     [
-      "Post",
+      "says",
+      2
+    ],
+    [
+      "House",
+      2
+    ],
+    [
+      "ahead",
+      2
+    ],
+    [
+      "Politico",
+      2
+    ],
+    [
+      "after",
+      2
+    ],
+    [
+      "Russian",
+      2
+    ],
+    [
+      "reports",
       2
     ],
     [
@@ -70,55 +94,31 @@
       2
     ],
     [
+      "Live",
+      2
+    ],
+    [
+      "updates",
+      2
+    ],
+    [
+      "News",
+      2
+    ],
+    [
+      "Thanksgiving",
+      2
+    ],
+    [
       "death",
       2
     ],
     [
-      "hit",
+      "How",
       2
     ],
     [
-      "travel",
-      2
-    ],
-    [
-      "San",
-      2
-    ],
-    [
-      "Francisco",
-      2
-    ],
-    [
-      "New",
-      2
-    ],
-    [
-      "York",
-      2
-    ],
-    [
-      "state",
-      2
-    ],
-    [
-      "Jensen",
-      2
-    ],
-    [
-      "Huang",
-      2
-    ],
-    [
-      "Nvidia",
-      2
-    ],
-    [
-      "Google",
-      2
-    ],
-    [
-      "Blade",
+      "His",
       2
     ]
   ],
@@ -126,120 +126,140 @@
     {
       "title": "Trump told the Army to pause the detonation of 9,500 pounds of lead azide in Iowa. Here's what to know - PBS",
       "summary": "Trump told the Army to pause the detonation of 9,500 pounds of lead azide in Iowa. Here's what to know - PBS",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Unsealed warrant documents for Ilhan Omar's DC home raid reveal decades-long scope of investigation - Fox News",
-      "summary": "Unsealed warrant documents for Ilhan Omar's DC home raid reveal decades-long scope of investigation - Fox News",
+      "title": "DOJ says House\u2019s top lawyer \u2018refused to be involved\u2019 ahead of Omar search - Politico",
+      "summary": "DOJ says House\u2019s top lawyer \u2018refused to be involved\u2019 ahead of Omar search - Politico",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Rep. Jimmy Gomez to resign following sexual misconduct findings - The Washington Post",
-      "summary": "Rep. Jimmy Gomez to resign following sexual misconduct findings - The Washington Post",
+      "title": "Jimmy Gomez to resign after House ethics panel finds evidence of sexual misconduct - The Guardian",
+      "summary": "Jimmy Gomez to resign after House ethics panel finds evidence of sexual misconduct - The Guardian",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
       "title": "Nato chief vows defence against space threat after Russian nuclear satellite reports - BBC",
       "summary": "Nato chief vows defence against space threat after Russian nuclear satellite reports - BBC",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Trump uses backdrop of DOJ to bash Gavin Newsom on death row commutations - NBC News",
-      "summary": "Trump uses backdrop of DOJ to bash Gavin Newsom on death row commutations - NBC News",
+      "title": "Live storm updates: King tide flooding begins in Bay Area, causing road closures - ABC7 Bay Area",
+      "summary": "Live storm updates: King tide flooding begins in Bay Area, causing road closures - ABC7 Bay Area",
+      "generated_by": "rules",
+      "source": "unknown",
+      "time": ""
+    },
+    {
+      "title": "Zelenskyy hails Ukraine's attack on a Russian warship docked at a naval base in Libya - NPR",
+      "summary": "Zelenskyy hails Ukraine's attack on a Russian warship docked at a naval base in Libya - NPR",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
       "title": "Husband of woman detained in viral ICE arrest at Seattle airport calls episode \"unjust\" - CBS News",
       "summary": "Husband of woman detained in viral ICE arrest at Seattle airport calls episode \"unjust\" - CBS News",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
       "title": "Rough weather expected to hit both coasts, may disrupt Thanksgiving travel - NBC News",
       "summary": "Rough weather expected to hit both coasts, may disrupt Thanksgiving travel - NBC News",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Rain Storms Overwhelm San Francisco\u2019s Sewers, Sending Wastewater Into the Streets - The New York Times",
-      "summary": "Rain Storms Overwhelm San Francisco\u2019s Sewers, Sending Wastewater Into the Streets - The New York Times",
+      "title": "Jensen Huang Is Back At Nvidia, But Where Is Alice Huang? - NDTV",
+      "summary": "Jensen Huang Is Back At Nvidia, But Where Is Alice Huang? - NDTV",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Federal appeals court hands Trump way out of conviction in hush-money case - The Guardian",
-      "summary": "Federal appeals court hands Trump way out of conviction in hush-money case - The Guardian",
+      "title": "Trump urges justice department to speed up federal executions in dig at Gavin Newsom - The Guardian",
+      "summary": "Trump urges justice department to speed up federal executions in dig at Gavin Newsom - The Guardian",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "These Bay Area places are most likely to flood from El Ni\u00f1o supercharged king tides - San Francisco Chronicle",
-      "summary": "These Bay Area places are most likely to flood from El Ni\u00f1o supercharged king tides - San Francisco Chronicle",
+      "title": "Pope Francis battled visions of the devil during a two-year spiritual crisis, diaries reveal - CNN",
+      "summary": "Pope Francis battled visions of the devil during a two-year spiritual crisis, diaries reveal - CNN",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Poland to get NATO early-warning aircraft after Russian missiles hit country - NBC News",
-      "summary": "Poland to get NATO early-warning aircraft after Russian missiles hit country - NBC News",
-      "source": "unknown",
-      "time": ""
-    },
-    {
-      "title": "Ukrainian naval drones strike a new Russian warship in Libya, and other Mideast news - AP News",
-      "summary": "Ukrainian naval drones strike a new Russian warship in Libya, and other Mideast news - AP News",
+      "title": "China sentences official to death for spying for foreign country - The Guardian",
+      "summary": "China sentences official to death for spying for foreign country - The Guardian",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
       "title": "My approach to EU is pragmatic, says Burnham - BBC",
       "summary": "My approach to EU is pragmatic, says Burnham - BBC",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Australia's Pauline Hanson faces biggest test as debt and anger align in state vote - Reuters",
-      "summary": "Australia's Pauline Hanson faces biggest test as debt and anger align in state vote - Reuters",
+      "title": "How Chris Bowen blew his global climate moment - Politico",
+      "summary": "How Chris Bowen blew his global climate moment - Politico",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "The Frantic White House Push to Get Jensen Huang Back - WSJ",
-      "summary": "The Frantic White House Push to Get Jensen Huang Back - WSJ",
+      "title": "Nvidia CEO Jensen Huang Reportedly Admitted To Additional Extramarital Affairs Before His Return - Forbes",
+      "summary": "Nvidia CEO Jensen Huang Reportedly Admitted To Additional Extramarital Affairs Before His Return - Forbes",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Stock futures inch higher as traders see whether Nvidia can extend rally from Jensen Huang\u2019s return: Live updates - CNBC",
-      "summary": "Stock futures inch higher as traders see whether Nvidia can extend rally from Jensen Huang\u2019s return: Live updates - CNBC",
+      "title": "States sue SpaceX to stop Grok from generating child sex images, revenge porn - Ars Technica",
+      "summary": "States sue SpaceX to stop Grok from generating child sex images, revenge porn - Ars Technica",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Trump administration blacklists Megaspeed, key firm in Nvidia scandal - The Washington Post",
-      "summary": "Trump administration blacklists Megaspeed, key firm in Nvidia scandal - The Washington Post",
+      "title": "Stock futures rise as traders see whether Nvidia can extend rally from Jensen Huang\u2019s return: Live updates - CNBC",
+      "summary": "Stock futures rise as traders see whether Nvidia can extend rally from Jensen Huang\u2019s return: Live updates - CNBC",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "Thanksgiving travel could be messy with storms coming after a week filled with airline glitches - AP News",
-      "summary": "Thanksgiving travel could be messy with storms coming after a week filled with airline glitches - AP News",
+      "title": "After judge signals \u2018steep hill\u2019 in regulatory case, Kalshi pauses operations in Utah - The Salt Lake Tribune",
+      "summary": "After judge signals \u2018steep hill\u2019 in regulatory case, Kalshi pauses operations in Utah - The Salt Lake Tribune",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
       "title": "Google alternative Kagi launches an email service - The Verge",
       "summary": "Google alternative Kagi launches an email service - The Verge",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     },
     {
-      "title": "AI Mode adding Google Drive, Wallet, & Gemini app integration - 9to5Google",
-      "summary": "AI Mode adding Google Drive, Wallet, & Gemini app integration - 9to5Google",
+      "title": "Google Wants To Make a 24/7 AI TV Channel. You\u2019ll Be the Main Character - 404 Media",
+      "summary": "Google Wants To Make a 24/7 AI TV Channel. You\u2019ll Be the Main Character - 404 Media",
+      "generated_by": "rules",
       "source": "unknown",
       "time": ""
     }
